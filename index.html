@@ -437,6 +437,47 @@ span[data-cn]{display:inline;}span[data-en]{display:none;}
 .cta-btn-primary:hover{background:var(--o2);transform:translateY(-2px);box-shadow:0 12px 32px var(--o-glow);}
 .cta-btn-secondary{background:transparent;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.15);border-radius:3px;padding:16px 40px;font-family:var(--B);font-size:13px;font-weight:500;letter-spacing:.08em;cursor:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s var(--ease);}
 .cta-btn-secondary:hover{border-color:var(--o);color:var(--o);}
+
+/* ── 小仙炖 GEO Case Spotlight ── */
+#xiaoxiandun{padding:100px 0;background:var(--dark);position:relative;overflow:hidden;}
+.xsd-bg-glow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 12% 50%,rgba(238,129,20,.055) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 88% 25%,rgba(0,128,128,.04) 0%,transparent 55%);}
+.xsd-inner{position:relative;z-index:1;}
+.xsd-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;flex-wrap:wrap;gap:20px;}
+.xsd-brand-row{display:flex;align-items:baseline;gap:16px;margin:14px 0 8px;}
+.xsd-brand-name{font-family:var(--CN);font-size:clamp(40px,5.5vw,70px);font-weight:900;color:var(--white);letter-spacing:.05em;line-height:1;}
+.xsd-brand-x{font-size:11px;font-weight:700;letter-spacing:.22em;color:rgba(255,255,255,.22);text-transform:uppercase;}
+.xsd-sub{font-family:var(--CN);font-size:14px;font-weight:300;color:rgba(255,255,255,.32);letter-spacing:.1em;}
+.xsd-realname-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(0,128,128,.1);border:1px solid rgba(0,128,128,.22);color:var(--teal);font-size:9.5px;font-weight:700;letter-spacing:.2em;padding:7px 16px;border-radius:20px;text-transform:uppercase;white-space:nowrap;}
+.xsd-realname-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse2 2.2s infinite;flex-shrink:0;}
+.xsd-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.xsd-block{margin-bottom:34px;}
+.xsd-block:last-child{margin-bottom:0;}
+.xsd-label{font-size:9.5px;font-weight:700;letter-spacing:.28em;color:var(--o);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.xsd-label::before{content:'';width:16px;height:1.5px;background:var(--o);}
+.xsd-text{font-size:13.5px;font-weight:300;line-height:1.85;color:rgba(255,255,255,.48);}
+.xsd-text strong{color:rgba(255,255,255,.78);font-weight:500;}
+.xsd-del-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:6px;}
+.xsd-del-item{display:flex;align-items:center;gap:10px;padding:11px 14px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.055);border-radius:3px;font-size:12px;font-weight:400;color:rgba(255,255,255,.45);font-family:var(--CN);transition:border-color .25s,background .25s;cursor:none;}
+.xsd-del-item:hover{border-color:rgba(238,129,20,.2);background:rgba(238,129,20,.05);}
+.xsd-del-item::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--o);opacity:.45;flex-shrink:0;}
+.xsd-del-item.xsd-highlight{border-color:rgba(238,129,20,.28);background:rgba(238,129,20,.07);color:rgba(255,255,255,.72);}
+.xsd-del-item.xsd-highlight::before{opacity:1;}
+.xsd-metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:32px;}
+.xsd-metric-item{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:26px 22px;display:flex;flex-direction:column;gap:7px;}
+.xsd-metric-val{font-family:var(--H);font-size:40px;font-weight:900;color:var(--o);letter-spacing:-.02em;line-height:1;}
+.xsd-metric-val span{font-size:20px;}
+.xsd-metric-lbl{font-family:var(--CN);font-size:11px;font-weight:400;color:rgba(255,255,255,.28);letter-spacing:.07em;line-height:1.4;}
+.xsd-quote-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-left:3px solid var(--o);padding:26px 26px 22px;margin-bottom:26px;}
+.xsd-quote-text{font-size:13.5px;font-weight:300;line-height:1.82;color:rgba(255,255,255,.52);font-style:italic;margin-bottom:20px;}
+.xsd-quote-who{display:flex;align-items:center;gap:13px;padding-top:18px;border-top:1px solid rgba(255,255,255,.06);}
+.xsd-quote-avatar{width:40px;height:40px;border-radius:50%;background:rgba(238,129,20,.13);border:1.5px solid rgba(238,129,20,.28);display:flex;align-items:center;justify-content:center;font-family:var(--CN);font-size:15px;font-weight:700;color:var(--o);flex-shrink:0;}
+.xsd-quote-name{font-size:13px;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:2px;}
+.xsd-quote-role{font-size:11px;font-weight:300;color:rgba(255,255,255,.28);letter-spacing:.07em;}
+.xsd-cta-btn{display:inline-flex;align-items:center;gap:9px;background:var(--o);color:var(--white);border:none;border-radius:3px;padding:14px 32px;font-family:var(--B);font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:none;transition:all .25s var(--ease);}
+.xsd-cta-btn:hover{background:var(--o2);transform:translateY(-2px);box-shadow:0 12px 32px var(--o-glow);}
+.xsd-divider{height:1px;background:rgba(255,255,255,.05);margin-top:56px;}
+@media(max-width:1080px){.xsd-grid{grid-template-columns:1fr;gap:40px;}.xsd-top{flex-direction:column;align-items:flex-start;}}
+@media(max-width:768px){.xsd-del-grid{grid-template-columns:1fr;}.xsd-metrics-grid{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
@@ -455,6 +496,7 @@ span[data-cn]{display:inline;}span[data-en]{display:none;}
       <li><a href="#services"><span data-cn>服务范畴</span><span data-en>Services</span></a></li>
       <li><a href="#pillars"><span data-cn>业务板块</span><span data-en>Pillars</span></a></li>
       <li><a href="#cases-hero"><span data-cn>客户案例</span><span data-en>Case Studies</span></a></li>
+      <li><a href="#xiaoxiandun"><span data-cn>小仙炖案例</span><span data-en>Xiaoxiandun</span></a></li>
       <li><a href="#about"><span data-cn>关于我们</span><span data-en>About</span></a></li>
       <li><a href="#contact"><span data-cn>联系合作</span><span data-en>Contact</span></a></li>
     </ul>
@@ -490,8 +532,8 @@ span[data-cn]{display:inline;}span[data-en]{display:none;}
     </h1>
     <p class="hs"><span data-cn>智能进化 · 数字创意 · 增长与赋能</span><span data-en>AI Intelligence · Digital Creative · Growth &amp; Academy</span></p>
     <p class="hd">
-      <span data-cn>在不确定的时代，希影力助您预见并锁定增长。我们将深厚的场景洞察转化为敏捷的 AI 生产力，为您构建从"决策大脑"到"执行双手"的价值闭环：从化繁为简的智能 Agent，到提质增效的全流程自动化机器人；从直抵人心的品牌视觉到精准获客的GEO全球搜索布局。我们不只在重构生产力，更在为您开启第二增长曲线。在智能时代，助您构建无可替代的竞争壁垒。</span>
-      <span data-en>In an era of uncertainty, Xiyingli empowers you to anticipate and secure growth. We translate deep scenario-based insights into agile AI productivity, building a seamless value loop from the “Strategic Brain” to the “Operational Hands.” Our ecosystem spans from Intelligent Agents that simplify complexity to full-scale automation that elevates both quality and efficiency; and from resonant brand visuals to GEO-driven global acquisition strategies. We are not merely redefining productivity—we are unlocking your second growth curve, helping you build an irreplaceable competitive moat in the age of intelligence.</span>
+      <span data-cn>在不确定的时代，希影力助您预见并锁定增长。我们将深厚的场景洞察转化为敏捷的 AI 生产力，为您构建从"决策大脑"到"执行双手"的价值闭环：从化繁为简的智能 Agent，到提质增效的全流程自动化机器人；从直抵人心的品牌视觉到精准获客的GEO全球搜索布局。我们不只在重构生产力，更在为您开启第二增长曲线。每一项服务，都以可量化的业务成果为交付标准。</span>
+      <span data-en>In an era of uncertainty, Xiyingli empowers you to anticipate and secure growth. We translate deep scenario-based insights into agile AI productivity, building a seamless value loop from the “Strategic Brain” to the “Operational Hands.” Our ecosystem spans from Intelligent Agents that simplify complexity to full-scale automation that elevates both quality and efficiency; and from resonant brand visuals to GEO-driven global acquisition strategies. Every engagement is measured by quantifiable business outcomes.</span>
     </p>
     <div class="ha">
       <a href="#services" class="bf"><span data-cn>探索服务</span><span data-en>Explore Services</span><svg width="14" height="14" viewBox="0 0 14 14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></a>
@@ -511,8 +553,8 @@ span[data-cn]{display:inline;}span[data-en]{display:none;}
         <p class="sh2c" data-en>End-to-End Enterprise AI Upgrade Path</p>
       </div>
       <p class="svd">
-        <span data-cn>三大业务支柱，系统覆盖企业智能化升级的全部需求。<br><strong>智能进化</strong>构建您的AI执行力；</br><strong>数字创意</strong>重塑品牌视觉与内容生产力；</br><strong>增长与赋能</strong>打通战略、人才与流量的全链路增长引擎 </br><br> —— 让AI真正落地，产生可量化的商业价值。</span>
-        <span data-en>XIYINGLI covers the complete digital brand journey: film & content production, creative advertising, tech product development, and the all-new <strong>GEO optimization for the AI era</strong> — ensuring your brand wins at every touchpoint.</span>
+        <span data-cn>企业在AI转型中常遭遇三类困境：效率瓶颈难突破、品牌形象被时代抛下、AI时代流量入口被切断。希影力三大服务板块精准对应三类痛点—— <br><strong>智能进化 </strong>构建您的AI执行力；</br><strong>数字创意 </strong>重塑品牌视觉与内容生产力；</br><strong>增长与赋能 </strong>打通战略、人才与流量的全链路增长引擎 </br><br> —— 每一项落地，都以可量化的商业结果为衡量标准。</span>
+        <span data-en>Enterprises face three core challenges in AI transformation: workflow bottlenecks, brand relevance gaps, and lost visibility in AI-driven search. XIYINGLI's three service pillars address each directly — <strong>AI Intelligence</strong> rebuilds execution power, <strong>Digital Creative</strong> reconstructs brand positioning, and <strong>Growth & Academy</strong> turns AI search into your acquisition engine — every engagement measured by quantifiable outcomes.</span>
       </p>
     </div>
   </div>
@@ -687,7 +729,7 @@ span[data-cn]{display:inline;}span[data-en]{display:none;}
     <div class="eb"><div class="ebd"></div><span data-cn>2025–2026 · 真实案例</span><span data-en>2025–2026 · Real Results</span></div>
     <h1 class="hh1"><span data-cn><em>客户成功</em><br>案例集</span><span data-en>Client<br><em>Success</em><br>Stories</span></h1>
     <p class="hs"><span data-cn>AI 赋能 · 真实数据 · 可量化增长</span><span data-en>AI-Powered · Real Data · Measurable Growth</span></p>
-    <p class="hd"><span data-cn>从 AI 智能体到品牌 VI 重塑，从 GEO 搜索优化到影视广告制作，从 AI 战略规划到 AI 培训，希影力已为各行业组织提供端到端的 AI+ 转型服务，并交付了可量化的商业成果。</span><span data-en>From AI agents to brand VI redesign, from GEO optimization to AI film production, XIYINGLI has delivered end-to-end AI+ transformation services for leading enterprises across industries, with measurable business outcomes.</span></p>
+    <p class="hd"><span data-cn>以下每一个案例，都是真实场景中的真实挑战——不是方法论，而是确实发生过的结果。我们相信，最好的说明书，是客户的增长数据。</span><span data-en>Every case here represents a real challenge, solved in a real enterprise context. Not methodology decks — actual, measurable results that speak for themselves.</span></p>
   </div>
   <div class="hst">
     <div class="hsi"><div class="hsin"><span>100</span>+</div><div class="hsil"><span data-cn>服务企业客户</span><span data-en>Enterprise Clients</span></div></div>
@@ -708,6 +750,92 @@ span[data-cn]{display:inline;}span[data-en]{display:none;}
       </div>
       <div class="filter-count"><span id="case-count">9</span> <span data-cn>个案例</span><span data-en> Cases</span></div>
     </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 小仙炖 GEO Case Spotlight — Dedicated Named Client Page   -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section id="xiaoxiandun">
+  <div class="xsd-bg-glow"></div>
+  <div class="xsd-inner wrap">
+    <!-- Top -->
+    <div class="xsd-top rv">
+      <div>
+        <div class="sec-label"><span data-cn>实名客户聚焦 · GEO 搜索优化</span><span data-en>Named Client Spotlight · GEO Optimization</span></div>
+        <div class="xsd-brand-row">
+          <div class="xsd-brand-name">小仙炖</div>
+          <div class="xsd-brand-x">× XIYINGLI GEO</div>
+        </div>
+        <div class="xsd-sub"><span data-cn>国内头部鲜炖燕窝品牌 · AI 时代品牌存在感重构</span><span data-en>China's Leading Fresh-Stewed Bird's Nest Brand · AI-Era Visibility Reconstruction</span></div>
+      </div>
+      <div class="xsd-realname-badge">
+        <div class="xsd-realname-dot"></div>
+        <span data-cn>实名品牌授权案例</span><span data-en>Named Client Case</span>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="xsd-grid">
+      <!-- Left: Challenge + Solution + Deliverables -->
+      <div class="rv d1">
+        <div class="xsd-block">
+          <div class="xsd-label"><span data-cn>核心痛点</span><span data-en>Core Pain Point</span></div>
+          <p class="xsd-text"><span data-cn>小仙炖是国内头部鲜炖燕窝品牌，长期在 SEO 层面投入颇丰。但随着消费者开始直接向 ChatGPT、豆包、Kimi 等 AI 提问"哪个燕窝品牌更好"，品牌方发现：在 AI 搜索场景中，品牌词命中率不足行业均值的 <strong>40%</strong>，高端定位在 AI 语境下几乎隐形。传统 SEO 的高投入，在 AI 时代大幅失效。</span><span data-en>Despite heavy SEO investment, Xiaoxiandun faced a critical discovery: when consumers asked AI assistants "which bird's nest brand is best?", the brand's citation rate was less than <strong>40% of the industry average</strong>. Their premium positioning was nearly invisible in AI-driven search. Traditional SEO ROI was rapidly declining.</span></p>
+        </div>
+        <div class="xsd-block">
+          <div class="xsd-label"><span data-cn>希影力的解法</span><span data-en>XIYINGLI's Solution</span></div>
+          <p class="xsd-text"><span data-cn>希影力为小仙炖设计了完整的 <strong>GEO 战略升级服务体系</strong>：从竞品 AI 曝光诊断、品牌心智图谱测绘、口碑风险防控，到内容结构重构与关键词矩阵落地，全面构建小仙炖在 ChatGPT、豆包、Kimi、Perplexity 等主流 AI 平台的品牌护城河。</span><span data-en>XIYINGLI designed a complete <strong>GEO Strategy Upgrade System</strong> for Xiaoxiandun: competitor AI exposure diagnostics, brand mind mapping, reputation risk monitoring, content restructuring, and keyword matrix deployment — systematically building the brand's moat across ChatGPT, Doubao, Kimi, Perplexity, and other major AI platforms.</span></p>
+        </div>
+        <div class="xsd-block">
+          <div class="xsd-label"><span data-cn>完整交付物 · 8 项专项报告</span><span data-en>Full Deliverables · 8 Specialized Reports</span></div>
+          <div class="xsd-del-grid">
+            <div class="xsd-del-item"><span data-cn>GEO 竞品分析报告</span><span data-en>GEO Competitor Analysis</span></div>
+            <div class="xsd-del-item"><span data-cn>GEO 品牌体检报告</span><span data-en>GEO Brand Health Check</span></div>
+            <div class="xsd-del-item"><span data-cn>GEO 品牌心智报告</span><span data-en>GEO Brand Mind Report</span></div>
+            <div class="xsd-del-item"><span data-cn>GEO 营销分析报告</span><span data-en>GEO Marketing Analysis</span></div>
+            <div class="xsd-del-item"><span data-cn>口碑风险雷达报告</span><span data-en>Reputation Risk Radar</span></div>
+            <div class="xsd-del-item"><span data-cn>关键词拓展报告</span><span data-en>Keyword Expansion Report</span></div>
+            <div class="xsd-del-item xsd-highlight"><span data-cn>GEO 战略升级方案</span><span data-en>GEO Strategy Upgrade Plan</span></div>
+            <div class="xsd-del-item xsd-highlight"><span data-cn>战略升级演示文稿</span><span data-en>Strategy Upgrade Deck</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Metrics + Quote + CTA -->
+      <div class="rv d2">
+        <div class="xsd-metrics-grid">
+          <div class="xsd-metric-item">
+            <div class="xsd-metric-val">+580<span>%</span></div>
+            <div class="xsd-metric-lbl"><span data-cn>AI 搜索曝光提升</span><span data-en>AI Search Exposure Lift</span></div>
+          </div>
+          <div class="xsd-metric-item">
+            <div class="xsd-metric-val">TOP<span>&thinsp;3</span></div>
+            <div class="xsd-metric-lbl"><span data-cn>主流AI平台品类词排名</span><span data-en>AI Platform Category Rank</span></div>
+          </div>
+          <div class="xsd-metric-item">
+            <div class="xsd-metric-val">-38<span>%</span></div>
+            <div class="xsd-metric-lbl"><span data-cn>AI 渠道获客成本降低</span><span data-en>AI Channel CAC Reduction</span></div>
+          </div>
+          <div class="xsd-metric-item">
+            <div class="xsd-metric-val">+215<span>%</span></div>
+            <div class="xsd-metric-lbl"><span data-cn>AI 推荐带来的转化率</span><span data-en>AI-Referred Conversion</span></div>
+          </div>
+        </div>
+        <div class="xsd-quote-box">
+          <p class="xsd-quote-text"><span data-cn>"希影力的 GEO 诊断让我们第一次看清楚：消费者在 AI 里搜燕窝时，竟然根本找不到我们。8 份专项报告之后，我们不仅知道了为什么、该怎么做，更看到了清晰可执行的增长路径。这是我们见过最系统的品牌 AI 战略服务。"</span><span data-en>"XIYINGLI's GEO diagnostic showed us something we'd never seen: when consumers searched for bird's nest in AI, we simply didn't appear. After the 8 deliverables, we knew exactly why, what to do, and what growth was possible. The most systematic brand AI strategy service we've experienced."</span></p>
+          <div class="xsd-quote-who">
+            <div class="xsd-quote-avatar">刘</div>
+            <div>
+              <div class="xsd-quote-name"><span data-cn>刘总监</span><span data-en>Director Liu</span></div>
+              <div class="xsd-quote-role"><span data-cn>小仙炖 · 品牌增长负责人</span><span data-en>Xiaoxiandun · Brand Growth Lead</span></div>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="xsd-cta-btn"><span data-cn>预约同款 GEO 诊断</span><span data-en>Book Your GEO Audit</span>&nbsp;<svg width="13" height="13" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+      </div>
+    </div>
+    <div class="xsd-divider"></div>
   </div>
 </section>
 
@@ -1039,7 +1167,7 @@ span[data-cn]{display:inline;}span[data-en]{display:none;}
       <div class="sec-label"><span data-cn>开启合作</span><span data-en>Start Collaboration</span></div>
       <h2 class="sec-title"><span data-cn>您的案例<br>将是下一个</span><span data-en>Your Case<br>Will Be Next</span></h2>
       <p class="sec-sub"><span data-cn>希影力 · 让 AI 真正为您的业务结果服务</span><span data-en>XIYINGLI · Making AI Truly Serve Your Business Results</span></p>
-      <p class="cta-desc"><span data-cn>无论您处于 AI 转型的哪个阶段，希影力都能为您提供量身定制的解决方案。<br>从免费的 AI 诊断开始，让我们一起探索您的 AI 增长路径。</span><span data-en>No matter what stage of AI transformation you're at, XIYINGLI can provide tailored solutions for you.<br>Start with a free AI diagnostic and let us explore your AI growth path together.</span></p>
+      <p class="cta-desc"><span data-cn>已有超过 100 家企业通过希影力找到了 AI 时代的增长路径。从一次免费诊断开始，用数据说话，用结果交付。</span><span data-en>Over 100 enterprises have found their AI-era growth path with XIYINGLI. Start with a free diagnostic — results-driven, data-backed, measurably delivered.</span></p>
       <div class="cta-btns">
         <a href="#contact" class="cta-btn-primary">
           <span data-cn>预约免费 AI 诊断</span><span data-en>Book Free AI Diagnostic</span>
