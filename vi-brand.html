@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>品牌VI视觉识别系统 — A&A Design × XIYINGLI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --o:#EE8114;--o2:#d4720f;--o-dim:rgba(238,129,20,.10);--o-glow:rgba(238,129,20,.35);
+  --dark:#141414;--dark2:#1e1e1e;--dark3:#1f1f1f;--mid:#4F4F4F;--muted:#888;
+  --line:rgba(255,255,255,.07);--line-lt:rgba(0,0,0,.08);
+  --light:#E5E5E5;--bg:#F6F5F3;--teal:#008080;--white:#fff;
+  --H:'Barlow Condensed',sans-serif;--B:'Barlow',sans-serif;--CN:'Noto Sans SC',sans-serif;
+  --nav:76px;--W:1200px;--ease:cubic-bezier(.22,1,.36,1);--ease2:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--B);background:var(--white);color:var(--dark);overflow-x:hidden;cursor:none;}
+a{cursor:none;text-decoration:none;}
+img{display:block;}
+#cur,#cur-r{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:all .2s var(--ease);}
+#cur{width:8px;height:8px;background:var(--o);border-radius:50%;}
+#cur-r{width:32px;height:32px;border:1.5px solid var(--o);border-radius:50%;opacity:.45;z-index:9998;}
+body.hov #cur{width:16px;height:16px;}body.hov #cur-r{width:52px;height:52px;}
+body.click #cur{transform:translate(-50%,-50%) scale(.7);}
+#prog{position:fixed;top:0;left:0;height:2px;background:transparent;z-index:10000;width:100%;}
+#prog-bar{height:100%;background:var(--o);transform-origin:left;transform:scaleX(0);transition:transform .06s linear;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:1000;transition:background .4s,box-shadow .4s;}
+nav.lt{background:rgba(255,255,255,.94);backdrop-filter:blur(24px);box-shadow:0 1px 0 var(--line-lt);}
+.nw{max-width:var(--W);margin:0 auto;padding:0 44px;height:100%;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:11px;}
+.lm{height:44px;width:auto;}
+.logo-img-dark{display:block;}
+.logo-img-light{display:none;}
+nav.lt .logo-img-dark{display:none;}
+nav.lt .logo-img-light{display:block;}
+.lt-wrap{display:flex;flex-direction:column;line-height:1;}
+.lcn{font-family:var(--CN);font-weight:700;font-size:16px;letter-spacing:.06em;transition:color .3s;}
+.len{font-size:9px;font-weight:700;letter-spacing:.22em;color:rgba(255,255,255,.35);margin-top:3px;transition:color .3s;}
+nav.lt .lcn{color:var(--dark);}nav.lt .len{color:var(--muted);}
+nav:not(.lt) .lcn{color:var(--white);}
+.nl{list-style:none;display:flex;gap:30px;}
+.nl a{font-size:12.5px;font-weight:500;letter-spacing:.07em;position:relative;padding-bottom:3px;transition:color .2s;}
+.nl a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--o);transition:width .3s var(--ease);}
+.nl a:hover::after,.nl a.active::after{width:100%;}
+nav:not(.lt) .nl a{color:rgba(255,255,255,.62);}nav:not(.lt) .nl a:hover,nav:not(.lt) .nl a.active{color:var(--white);}
+nav.lt .nl a{color:var(--mid);}nav.lt .nl a:hover,nav.lt .nl a.active{color:var(--dark);}
+.nr{display:flex;align-items:center;gap:14px;}
+.nc{background:var(--o);color:var(--white);border:none;border-radius:3px;padding:10px 22px;font-family:var(--B);font-size:12px;font-weight:700;letter-spacing:.08em;cursor:none;transition:all .25s var(--ease);display:inline-flex;align-items:center;gap:7px;}
+.nc:hover{background:#d4720f;box-shadow:0 8px 22px var(--o-glow);transform:translateY(-1px);}
+.back-link{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:.1em;border-radius:20px;padding:5px 13px;cursor:none;transition:all .2s;}
+nav:not(.lt) .back-link{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.55);}
+nav:not(.lt) .back-link:hover{border-color:var(--o);color:var(--o);}
+nav.lt .back-link{border:1px solid rgba(0,0,0,.14);color:var(--mid);}
+nav.lt .back-link:hover{border-color:var(--o);color:var(--o);}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:4px;}
+.ham span{display:block;width:22px;height:1.8px;transition:.3s;}
+nav:not(.lt) .ham span{background:rgba(255,255,255,.7);}
+nav.lt .ham span{background:var(--dark);}
+.mm{display:none;position:fixed;inset:0;background:var(--dark2);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:36px;}
+.mm.open{display:flex;}
+.mm a{font-family:var(--H);font-size:38px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.02em;transition:color .2s;cursor:none;}
+.mm a:hover{color:var(--o);}
+.mm .xb{position:absolute;top:28px;right:36px;background:none;border:none;cursor:none;color:rgba(255,255,255,.4);font-size:26px;}
+
+/* HERO */
+#hero{height:100vh;min-height:680px;background:var(--dark);position:relative;overflow:hidden;display:flex;align-items:center;}
+.hg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 70% 50%,rgba(238,129,20,.08) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 10% 90%,rgba(0,128,128,.07) 0%,transparent 60%);}
+.hgr{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 30%,transparent 75%);}
+/* floating VI letters decorative bg */
+.hero-deco{position:absolute;right:-2%;top:50%;transform:translateY(-50%);width:55vw;max-width:780px;pointer-events:none;opacity:.04;}
+.hero-deco-inner{font-family:var(--H);font-size:clamp(200px,28vw,380px);font-weight:900;color:#fff;line-height:.85;letter-spacing:-.04em;user-select:none;text-align:right;}
+.hi{position:relative;z-index:2;width:100%;max-width:var(--W);margin:0 auto;padding:0 44px;padding-top:var(--nav);}
+.eb{display:inline-flex;align-items:center;gap:10px;background:rgba(238,129,20,.1);border:1px solid rgba(238,129,20,.2);border-radius:30px;padding:5px 16px 5px 10px;font-size:10.5px;font-weight:700;letter-spacing:.22em;color:var(--o);text-transform:uppercase;margin-bottom:32px;opacity:0;transform:translateY(16px);animation:up .8s var(--ease) .15s forwards;}
+.ebd{width:6px;height:6px;background:var(--o);border-radius:50%;}
+.hh1{font-family:var(--H);font-size:clamp(58px,8.5vw,108px);font-weight:900;line-height:.95;letter-spacing:-.01em;color:var(--white);margin-bottom:22px;opacity:0;transform:translateY(30px);animation:up 1s var(--ease) .3s forwards;}
+.hh1 em{color:var(--o);font-style:normal;}
+.hs{font-family:var(--CN);font-size:clamp(13px,1.8vw,18px);font-weight:300;color:rgba(255,255,255,.28);letter-spacing:.14em;margin-bottom:36px;opacity:0;transform:translateY(16px);animation:up .9s var(--ease) .5s forwards;}
+.hd{max-width:560px;font-size:15px;font-weight:300;line-height:1.82;color:rgba(255,255,255,.48);margin-bottom:52px;opacity:0;transform:translateY(16px);animation:up .9s var(--ease) .65s forwards;}
+.ha{display:flex;align-items:center;gap:20px;opacity:0;transform:translateY(16px);animation:up .9s var(--ease) .8s forwards;}
+.bf{background:var(--o);color:var(--white);border:none;border-radius:3px;padding:15px 34px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s var(--ease);}
+.bf:hover{background:#d4720f;transform:translateY(-2px);box-shadow:0 12px 30px var(--o-glow);}
+.bo{background:transparent;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.18);border-radius:3px;padding:15px 34px;font-size:13px;font-weight:500;letter-spacing:.08em;cursor:none;display:inline-flex;align-items:center;gap:8px;transition:all .25s var(--ease);}
+.bo:hover{border-color:var(--o);color:var(--o);}
+.hst{position:absolute;bottom:0;left:0;right:0;border-top:1px solid var(--line);display:flex;opacity:0;animation:up .9s var(--ease) 1s forwards;}
+.hsi{flex:1;padding:26px 44px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px;}
+.hsi:last-child{border-right:none;}
+.hsin{font-family:var(--H);font-size:32px;font-weight:900;color:var(--white);letter-spacing:-.02em;line-height:1;}
+.hsin span{color:var(--o);}
+.hsil{font-size:11px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.12em;}
+@keyframes up{to{opacity:1;transform:translateY(0);}}
+
+/* SECTION BASE */
+.sec{position:relative;}
+.sw{max-width:var(--W);margin:0 auto;padding:0 44px;}
+.wrap{max-width:var(--W);margin:0 auto;padding:0 44px;}
+.sl{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;font-weight:700;letter-spacing:.28em;color:var(--o);text-transform:uppercase;margin-bottom:18px;}
+.sl::before{content:'';width:22px;height:1.5px;background:var(--o);}
+.sh2{font-family:var(--H);font-size:clamp(38px,5vw,64px);font-weight:900;line-height:1;letter-spacing:-.01em;}
+.sh2c{font-family:var(--CN);font-size:clamp(14px,1.6vw,20px);font-weight:300;color:var(--muted);letter-spacing:.08em;margin-top:10px;}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .85s var(--ease2),transform .85s var(--ease2);}
+.rv.on{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.08s;}.d2{transition-delay:.18s;}.d3{transition-delay:.28s;}
+.d4{transition-delay:.38s;}.d5{transition-delay:.48s;}.d6{transition-delay:.58s;}
+
+/* ── PAIN POINTS ── */
+#pain{padding:100px 0;background:var(--bg);}
+.pain-top{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:64px;}
+.pain-lead{font-size:15px;font-weight:300;line-height:1.88;color:var(--muted);}
+.pain-lead strong{color:var(--dark);font-weight:600;}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.pain-card{background:var(--white);padding:44px 36px 40px;position:relative;overflow:hidden;border-top:3px solid transparent;transition:border-color .35s,box-shadow .35s,transform .35s var(--ease);}
+.pain-card:hover{border-top-color:var(--o);box-shadow:0 24px 64px rgba(0,0,0,.08);transform:translateY(-3px);z-index:1;}
+.pain-icon{width:48px;height:48px;border-radius:12px;background:var(--o-dim);display:flex;align-items:center;justify-content:center;margin-bottom:24px;color:var(--o);}
+.pain-icon svg{width:22px;height:22px;}
+.pain-num{position:absolute;top:20px;right:24px;font-family:var(--H);font-size:72px;font-weight:900;color:var(--bg);line-height:1;user-select:none;transition:color .3s;}
+.pain-card:hover .pain-num{color:var(--o-dim);}
+.pain-title{font-family:var(--H);font-size:22px;font-weight:700;color:var(--dark);line-height:1.15;margin-bottom:5px;}
+.pain-title-cn{font-family:var(--CN);font-size:12px;color:var(--o);letter-spacing:.06em;margin-bottom:16px;}
+.pain-desc{font-size:13.5px;font-weight:300;line-height:1.8;color:var(--muted);}
+.pain-solve{display:flex;align-items:flex-start;gap:8px;margin-top:20px;padding-top:20px;border-top:1px solid var(--line-lt);font-size:12.5px;color:var(--mid);}
+.pain-solve-dot{width:7px;height:7px;border-radius:50%;background:var(--o);flex-shrink:0;margin-top:4px;}
+
+/* ── SERVICE MODULES ── */
+#modules{padding:120px 0 0;background:var(--white);}
+.mod-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:72px;}
+.mod-desc{font-size:15px;font-weight:300;line-height:1.88;color:var(--muted);}
+.mod-desc strong{color:var(--dark);font-weight:600;}
+/* Big A/B/C module tabs */
+.mod-nav{display:flex;gap:0;border-bottom:2px solid var(--line-lt);margin-bottom:52px;}
+.mod-tab{display:flex;align-items:center;gap:10px;padding:16px 32px;font-family:var(--H);font-size:16px;font-weight:700;letter-spacing:.06em;color:var(--mid);border-bottom:3px solid transparent;margin-bottom:-2px;cursor:none;transition:all .25s;background:none;border-top:none;border-left:none;border-right:none;}
+.mod-tab:hover{color:var(--dark);}
+.mod-tab.active{color:var(--o);border-bottom-color:var(--o);}
+.mod-tab-letter{font-size:11px;font-weight:800;letter-spacing:.18em;opacity:.5;}
+.mod-panels{position:relative;}
+.mod-panel{display:none;}
+.mod-panel.active{display:grid;grid-template-columns:360px 1fr;gap:64px;align-items:start;}
+.mod-panel-left{}
+.mod-panel-big{font-family:var(--H);font-size:clamp(80px,10vw,130px);font-weight:900;line-height:.85;letter-spacing:-.03em;color:var(--light);}
+.mod-panel-tag{display:inline-block;background:var(--o-dim);color:var(--o);font-size:10px;font-weight:700;letter-spacing:.2em;padding:5px 12px;border-radius:2px;text-transform:uppercase;margin-bottom:20px;}
+.mod-panel-title{font-family:var(--H);font-size:clamp(28px,3.5vw,44px);font-weight:900;color:var(--dark);line-height:1.05;letter-spacing:-.01em;margin-bottom:8px;}
+.mod-panel-cn{font-family:var(--CN);font-size:14px;font-weight:400;color:var(--muted);letter-spacing:.08em;margin-bottom:24px;}
+.mod-panel-desc{font-size:14px;font-weight:300;line-height:1.85;color:var(--muted);margin-bottom:32px;}
+.mod-panel-desc strong{color:var(--dark);font-weight:600;}
+.mod-cta{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--o);text-transform:uppercase;cursor:none;transition:gap .25s var(--ease);}
+.mod-cta:hover{gap:13px;}
+/* deliverables list */
+.del-section{margin-bottom:32px;}
+.del-label{font-size:10px;font-weight:700;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line-lt);}
+.del-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.del-item{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid var(--line-lt);font-size:13px;font-weight:400;color:var(--mid);}
+.del-item:nth-last-child(-n+2){border-bottom:none;}
+.del-dot{width:7px;height:7px;border-radius:50%;background:var(--o-dim);border:1.5px solid var(--o);flex-shrink:0;margin-top:4px;}
+.del-cn{font-family:var(--CN);font-size:11px;color:var(--muted);margin-top:2px;display:block;}
+
+/* ── FULL DELIVERABLES TABLE ── */
+#deliverables{padding:0 0 120px;background:var(--white);}
+.del-table-wrap{background:var(--bg);border-radius:2px;overflow:hidden;}
+.del-table-header{display:grid;grid-template-columns:200px 1fr 1fr;background:var(--dark);padding:16px 44px;font-size:10.5px;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.4);text-transform:uppercase;}
+.del-row{display:grid;grid-template-columns:200px 1fr 1fr;border-bottom:1px solid var(--line-lt);}
+.del-row:last-child{border-bottom:none;}
+.del-row:hover{background:var(--white);}
+.del-cell{padding:20px 44px;font-size:13px;font-weight:400;color:var(--mid);line-height:1.65;font-family:var(--CN);}
+.del-cell:first-child{font-weight:600;color:var(--dark);background:rgba(238,129,20,.04);border-right:1px solid var(--line-lt);}
+.del-cell-cat{font-size:9.5px;font-weight:700;letter-spacing:.18em;color:var(--o);text-transform:uppercase;display:block;margin-bottom:4px;}
+.del-items-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.del-items-list li{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:var(--mid);}
+.del-items-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--o);flex-shrink:0;margin-top:5px;}
+
+/* ── PROCESS ── */
+#process{padding:120px 0;background:var(--dark);overflow:hidden;}
+.proc-top{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:72px;}
+.proc-desc{font-size:15px;font-weight:300;line-height:1.85;color:rgba(255,255,255,.42);}
+.proc-desc strong{color:rgba(255,255,255,.8);font-weight:500;}
+.proc-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;}
+.proc-steps::before{content:'';position:absolute;top:24px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(238,129,20,.35),transparent);}
+.proc-step{padding:0 16px;text-align:center;position:relative;}
+.proc-step-num{width:48px;height:48px;border-radius:50%;background:rgba(238,129,20,.12);border:1px solid rgba(238,129,20,.25);display:flex;align-items:center;justify-content:center;font-family:var(--H);font-size:18px;font-weight:900;color:var(--o);margin:0 auto 22px;}
+.proc-step-title{font-family:var(--H);font-size:16px;font-weight:700;color:var(--white);margin-bottom:8px;letter-spacing:.02em;}
+.proc-step-cn{font-family:var(--CN);font-size:11px;color:rgba(255,255,255,.28);letter-spacing:.06em;margin-bottom:12px;}
+.proc-step-desc{font-size:12px;font-weight:300;line-height:1.7;color:rgba(255,255,255,.35);}
+
+/* ── CASES ── */
+#vi-cases{padding:120px 0 0;background:var(--bg);}
+.cases-top{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:64px;}
+.cases-desc{font-size:15px;font-weight:300;line-height:1.88;color:var(--muted);}
+.cases-desc strong{color:var(--dark);font-weight:600;}
+.cases-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.case-card{background:var(--white);overflow:hidden;position:relative;cursor:none;transition:box-shadow .35s var(--ease),transform .35s var(--ease);}
+.case-card:hover{box-shadow:0 28px 72px rgba(0,0,0,.11);transform:translateY(-4px);z-index:2;}
+.case-visual{height:220px;background:var(--dark);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.case-visual-bg{position:absolute;inset:0;}
+.case-visual-txt{position:relative;z-index:1;text-align:center;}
+.case-visual-brand{font-family:var(--H);font-size:42px;font-weight:900;color:var(--white);letter-spacing:-.02em;opacity:.9;}
+.case-visual-type{font-size:10px;font-weight:700;letter-spacing:.22em;color:rgba(255,255,255,.35);text-transform:uppercase;margin-top:6px;}
+.case-body{padding:36px 36px 30px;}
+.case-meta{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.case-tag-badge{background:var(--o-dim);color:var(--o);font-size:9.5px;font-weight:700;letter-spacing:.16em;padding:4px 10px;text-transform:uppercase;border-radius:2px;}
+.case-industry{font-size:11px;color:var(--muted);letter-spacing:.05em;}
+.case-title{font-family:var(--H);font-size:24px;font-weight:700;color:var(--dark);margin-bottom:4px;line-height:1.1;}
+.case-title-cn{font-family:var(--CN);font-size:12px;color:var(--muted);letter-spacing:.06em;margin-bottom:16px;}
+.case-desc{font-size:13px;font-weight:300;line-height:1.78;color:var(--muted);}
+.case-results{display:flex;gap:24px;margin-top:24px;padding-top:24px;border-top:1px solid var(--line-lt);}
+.case-result-item{display:flex;flex-direction:column;gap:3px;}
+.case-result-num{font-family:var(--H);font-size:26px;font-weight:900;color:var(--o);line-height:1;}
+.case-result-num span{font-size:16px;}
+.case-result-label{font-size:10.5px;color:var(--muted);letter-spacing:.04em;}
+.case-link{display:inline-flex;align-items:center;gap:7px;margin-top:20px;font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--o);text-transform:uppercase;cursor:none;transition:gap .25s;}
+.case-card:hover .case-link{gap:11px;}
+
+/* case-wide spans full width */
+.case-card.wide{grid-column:span 2;}
+.case-card.wide .case-visual{height:280px;}
+
+/* ── TESTIMONIALS ── */
+#testimonials{padding:120px 0;background:var(--white);}
+.testi-top{text-align:center;max-width:700px;margin:0 auto 72px;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.testi-card{background:var(--bg);padding:40px 36px 36px;position:relative;cursor:none;transition:background .3s,box-shadow .3s;}
+.testi-card:hover{background:var(--white);box-shadow:0 20px 56px rgba(0,0,0,.07);}
+.testi-quote-mark{font-family:var(--H);font-size:80px;font-weight:900;color:var(--o-dim);line-height:.7;margin-bottom:20px;}
+.testi-text{font-family:var(--CN);font-size:14px;font-weight:300;line-height:1.9;color:var(--mid);margin-bottom:28px;font-style:italic;}
+.testi-author{display:flex;align-items:center;gap:14px;}
+.testi-avatar{width:40px;height:40px;border-radius:50%;background:var(--o-dim);border:1.5px solid rgba(238,129,20,.25);display:flex;align-items:center;justify-content:center;font-family:var(--CN);font-size:12px;font-weight:700;color:var(--o);flex-shrink:0;}
+.testi-name{font-family:var(--CN);font-size:13px;font-weight:600;color:var(--dark);}
+.testi-role{font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.04em;}
+.testi-brand{display:inline-block;margin-top:4px;font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--o);text-transform:uppercase;}
+
+/* ── FAQ ── */
+#faq{padding:100px 0;background:var(--bg);}
+.faq-grid{display:grid;grid-template-columns:360px 1fr;gap:80px;align-items:start;}
+.faq-list{display:flex;flex-direction:column;gap:2px;}
+.faq-item{background:var(--white);border-left:3px solid transparent;transition:border-color .3s;cursor:none;}
+.faq-item.open,.faq-item:hover{border-left-color:var(--o);}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;font-family:var(--CN);font-size:14px;font-weight:500;color:var(--dark);}
+.faq-q button{background:none;border:none;cursor:none;color:var(--o);font-size:18px;flex-shrink:0;transition:transform .3s;}
+.faq-item.open .faq-q button{transform:rotate(45deg);}
+.faq-a{display:none;padding:0 24px 20px;font-family:var(--CN);font-size:13px;font-weight:300;line-height:1.85;color:var(--muted);}
+.faq-item.open .faq-a{display:block;}
+
+/* ── CTA BAND ── */
+#cta{padding:120px 0;background:var(--dark);position:relative;overflow:hidden;}
+.cta-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80vw;height:80vh;border-radius:50%;background:radial-gradient(ellipse,rgba(238,129,20,.07) 0%,transparent 65%);}
+.cta-inner{position:relative;z-index:1;text-align:center;max-width:760px;margin:0 auto;}
+.cta-label{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;font-weight:700;letter-spacing:.28em;color:var(--o);text-transform:uppercase;margin-bottom:28px;}
+.cta-label::before{content:'';width:22px;height:1.5px;background:var(--o);}
+.cta-label::after{content:'';width:22px;height:1.5px;background:var(--o);}
+.cta-h2{font-family:var(--H);font-size:clamp(48px,7vw,90px);font-weight:900;color:var(--white);line-height:.95;letter-spacing:-.02em;margin-bottom:28px;}
+.cta-h2 em{color:var(--o);font-style:normal;}
+.cta-p{font-family:var(--CN);font-size:16px;font-weight:300;line-height:1.85;color:rgba(255,255,255,.4);margin-bottom:48px;}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:20px;}
+
+/* ── CONTACT ── */
+#contact{padding:120px 0;background:var(--bg);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.contact-info{}
+.contact-intro{font-size:15px;font-weight:300;line-height:1.88;color:var(--muted);margin-bottom:40px;}
+.c-info-row{display:flex;flex-direction:column;gap:2px;margin-bottom:32px;}
+.c-info-item{display:flex;gap:20px;padding:18px 24px;background:var(--white);align-items:flex-start;}
+.c-info-label{font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;min-width:64px;margin-top:2px;}
+.c-info-val{font-size:14px;font-weight:500;color:var(--dark);}
+.cform{display:flex;flex-direction:column;gap:16px;}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.cf-label{display:block;font-size:10.5px;font-weight:600;letter-spacing:.14em;color:var(--mid);text-transform:uppercase;margin-bottom:7px;}
+.cf-input{width:100%;background:var(--white);border:1px solid var(--line-lt);padding:14px 18px;font-family:var(--B);font-size:14px;color:var(--dark);transition:border-color .2s;border-radius:2px;outline:none;}
+.cf-input:focus{border-color:var(--o);}
+.cf-input::placeholder{color:rgba(0,0,0,.25);}
+.cf-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
+.cf-textarea{resize:vertical;min-height:120px;}
+.cf-check{display:flex;align-items:flex-start;gap:10px;font-size:12px;font-weight:300;color:var(--muted);}
+.cf-check input{margin-top:3px;accent-color:var(--o);}
+.cf-submit{background:var(--o);color:var(--white);border:none;border-radius:3px;padding:16px 36px;font-family:var(--B);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:none;transition:all .25s var(--ease);display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;}
+.cf-submit:hover{background:#d4720f;box-shadow:0 12px 30px var(--o-glow);}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:56px 0 32px;border-top:1px solid var(--line);}
+.foot-grid{display:grid;grid-template-columns:280px 1fr 1fr 1fr;gap:48px;margin-bottom:52px;}
+.foot-brand-cn{font-family:var(--CN);font-weight:700;font-size:17px;letter-spacing:.06em;color:var(--white);margin-bottom:4px;}
+.foot-brand-en{font-size:9px;font-weight:700;letter-spacing:.22em;color:rgba(255,255,255,.25);}
+.foot-tagline{font-size:12.5px;font-weight:300;line-height:1.75;color:rgba(255,255,255,.3);margin-top:16px;}
+.foot-col-title{font-size:10px;font-weight:700;letter-spacing:.22em;color:rgba(255,255,255,.3);text-transform:uppercase;margin-bottom:20px;}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.foot-links a{font-size:13px;font-weight:300;color:rgba(255,255,255,.45);transition:color .2s;cursor:none;}
+.foot-links a:hover{color:var(--o);}
+.foot-bottom{border-top:1px solid var(--line);padding-top:28px;display:flex;justify-content:space-between;align-items:center;}
+.foot-copy{font-size:11.5px;color:rgba(255,255,255,.2);}
+.foot-sub{font-size:11px;color:rgba(255,255,255,.2);display:flex;gap:20px;}
+.foot-sub a{color:rgba(255,255,255,.2);cursor:none;transition:color .2s;}
+.foot-sub a:hover{color:rgba(255,255,255,.4);}
+
+/* MARQUEE */
+.mq-wrap{overflow:hidden;white-space:nowrap;padding:30px 0;border-top:1px solid var(--line-lt);border-bottom:1px solid var(--line-lt);background:var(--white);margin-top:2px;}
+.mq-track{display:inline-flex;animation:scroll 28s linear infinite;}
+.mq-track:hover{animation-play-state:paused;}
+.mq-item{display:inline-flex;align-items:center;gap:24px;padding:0 32px;font-family:var(--H);font-size:26px;font-weight:700;color:var(--light);cursor:none;letter-spacing:-.01em;transition:color .25s;}
+.mq-item:hover{color:var(--o);}
+.mq-dot{width:5px;height:5px;background:var(--o);border-radius:50%;flex-shrink:0;}
+@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  :root{--nav:64px;}
+  .nl{display:none;}
+  .ham{display:flex;}
+  .back-link{display:none;}
+  .pain-grid,.cases-grid,.testi-grid,.mod-panel.active{grid-template-columns:1fr;gap:2px;}
+  .proc-steps{grid-template-columns:1fr;gap:20px;}
+  .proc-steps::before{display:none;}
+  .pain-top,.mod-intro,.cases-top,.proc-top,.faq-grid,.contact-grid,.foot-grid{grid-template-columns:1fr;gap:40px;}
+  .case-card.wide{grid-column:span 1;}
+  .hst{flex-wrap:wrap;}
+  .hsi{min-width:50%;}
+  .mod-panel.active{grid-template-columns:1fr;}
+  .mod-panel-big{font-size:80px;}
+  .del-grid{grid-template-columns:1fr;}
+  .del-table-header,.del-row{grid-template-columns:1fr;}
+  .del-cell:first-child{border-right:none;}
+  .cf-row{grid-template-columns:1fr;}
+  .testi-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"><div id="prog-bar"></div></div>
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nw">
+    <a href="#" class="logo">
+      <img src="data:image/png;base64,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" class="lm logo-img-dark" style="height:56px;width:auto;" alt="希影力 XIYINGLI">
+      <img src="data:image/png;base64,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" class="lm logo-img-light" style="height:56px;width:auto;" alt="希影力 XIYINGLI">
+    </a>
+    <ul class="nl" id="navList">
+      <li><a href="#pain">品牌困境</a></li>
+      <li><a href="#modules">服务模块</a></li>
+      <li><a href="#process">合作流程</a></li>
+      <li><a href="#vi-cases">案例展示</a></li>
+      <li><a href="#testimonials">客户心声</a></li>
+      <li><a href="#contact">预约咨询</a></li>
+    </ul>
+    <div class="nr">
+      <a href="index.html" class="back-link">
+        <svg width="12" height="12" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="6" x2="2" y2="6"/><polyline points="5,3 2,6 5,9"/></svg>
+        返回主站
+      </a>
+      <a href="#contact" class="nc">
+        免费品牌诊断
+        <svg width="13" height="13" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg>
+      </a>
+      <button class="ham" id="hbtn"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mm" id="mmenu">
+  <button class="xb" id="xbtn">✕</button>
+  <a href="#pain">品牌困境</a>
+  <a href="#modules">服务模块</a>
+  <a href="#process">合作流程</a>
+  <a href="#vi-cases">案例展示</a>
+  <a href="#testimonials">客户心声</a>
+  <a href="#contact">预约咨询</a>
+  <a href="index.html" style="font-size:18px;opacity:.4;">← 返回主站</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hg"></div>
+  <div class="hgr"></div>
+  <div class="hero-deco">
+    <div class="hero-deco-inner">VI</div>
+  </div>
+  <!-- Decorative right-side brand visual -->
+  <div style="position:absolute;right:0;top:0;bottom:0;width:50%;pointer-events:none;opacity:0.18;">
+    <svg viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMaxYMid slice">
+      <defs>
+        <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#EE8114" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#d4720f" stop-opacity="0.4"/>
+        </linearGradient>
+        <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#008080" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#005555" stop-opacity="0.2"/>
+        </linearGradient>
+        <filter id="blur1"><feGaussianBlur stdDeviation="8"/></filter>
+      </defs>
+      <!-- Grid lines -->
+      <g stroke="rgba(255,255,255,0.06)" stroke-width="1">
+        <line x1="0" y1="100" x2="600" y2="100"/>
+        <line x1="0" y1="200" x2="600" y2="200"/>
+        <line x1="0" y1="300" x2="600" y2="300"/>
+        <line x1="0" y1="400" x2="600" y2="400"/>
+        <line x1="0" y1="500" x2="600" y2="500"/>
+        <line x1="0" y1="600" x2="600" y2="600"/>
+        <line x1="100" y1="0" x2="100" y2="700"/>
+        <line x1="200" y1="0" x2="200" y2="700"/>
+        <line x1="300" y1="0" x2="300" y2="700"/>
+        <line x1="400" y1="0" x2="400" y2="700"/>
+        <line x1="500" y1="0" x2="500" y2="700"/>
+      </g>
+      <!-- Abstract brand mark shapes -->
+      <g opacity="0.7">
+        <!-- Large X shape hint -->
+        <path d="M200,150 L380,350 M380,150 L200,350" stroke="url(#g1)" stroke-width="28" stroke-linecap="round" fill="none" opacity="0.5"/>
+        <!-- Geometric circles -->
+        <circle cx="290" cy="250" r="120" stroke="url(#g1)" stroke-width="2" fill="none" opacity="0.4"/>
+        <circle cx="290" cy="250" r="80" stroke="rgba(238,129,20,0.3)" stroke-width="1.5" fill="none"/>
+        <circle cx="290" cy="250" r="180" stroke="rgba(238,129,20,0.12)" stroke-width="1" fill="none"/>
+        <!-- Triangle accent -->
+        <polygon points="290,130 390,310 190,310" stroke="url(#g2)" stroke-width="2" fill="none" opacity="0.5"/>
+        <!-- Small accent squares -->
+        <rect x="430" y="80" width="40" height="40" stroke="rgba(238,129,20,0.4)" stroke-width="1.5" fill="none" transform="rotate(15,450,100)"/>
+        <rect x="100" y="520" width="28" height="28" stroke="rgba(0,128,128,0.4)" stroke-width="1.5" fill="none" transform="rotate(-10,114,534)"/>
+        <!-- Dot cluster -->
+        <circle cx="150" cy="200" r="4" fill="rgba(238,129,20,0.5)"/>
+        <circle cx="170" cy="220" r="2.5" fill="rgba(238,129,20,0.3)"/>
+        <circle cx="130" cy="230" r="2" fill="rgba(238,129,20,0.25)"/>
+        <circle cx="460" cy="450" r="4" fill="rgba(0,128,128,0.5)"/>
+        <circle cx="480" cy="430" r="2.5" fill="rgba(0,128,128,0.3)"/>
+        <!-- Horizontal ruler marks -->
+        <line x1="90" y1="490" x2="200" y2="490" stroke="rgba(238,129,20,0.35)" stroke-width="1.5"/>
+        <line x1="90" y1="497" x2="145" y2="497" stroke="rgba(238,129,20,0.2)" stroke-width="1"/>
+        <!-- Corner bracket -->
+        <path d="M400,580 L440,580 L440,540" stroke="rgba(238,129,20,0.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M160,80 L120,80 L120,120" stroke="rgba(0,128,128,0.4)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </g>
+      <!-- Glowing blobs -->
+      <circle cx="290" cy="350" r="150" fill="url(#g1)" opacity="0.06" filter="url(#blur1)"/>
+      <circle cx="400" cy="500" r="100" fill="url(#g2)" opacity="0.1" filter="url(#blur1)"/>
+    </svg>
+  </div>
+  <div class="hi">
+    <div class="eb"><span class="ebd"></span>Brand VI · 品牌视觉识别系统</div>
+    <h1 class="hh1">BRAND<br><em>IDENTITY</em><br>SYSTEM</h1>
+    <p class="hs">品牌 VI 视觉识别系统 · 让每一个触点都在说品牌的话</p>
+    <p class="hd">
+      一套真正有效的VI不只是好看的LOGO —— 它是品牌与消费者之间最持久的信任协议。
+      从品牌战略洞察到视觉全系落地，希影力为您打造在所有接触点上一致传达的品牌识别体系。
+    </p>
+    <div class="ha">
+      <a href="#modules" class="bf">查看服务模块 <svg width="14" height="14" viewBox="0 0 14 14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></a>
+      <a href="#contact" class="bo">申请免费品牌体检</a>
+    </div>
+  </div>
+  <div class="hst">
+    <div class="hsi">
+      <span class="hsin">10<span>+</span></span>
+      <span class="hsil">品牌设计年限</span>
+    </div>
+    <div class="hsi">
+      <span class="hsin">50<span>+</span></span>
+      <span class="hsil">成功服务品牌</span>
+    </div>
+    <div class="hsi">
+      <span class="hsin">3</span>
+      <span class="hsil">服务模块全覆盖</span>
+    </div>
+    <div class="hsi">
+      <span class="hsin">A→C</span>
+      <span class="hsil">策略·塑造·营销识别</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PAIN POINTS ══ -->
+<section id="pain" class="sec" style="position:relative;overflow:hidden;">
+  <!-- Background decorative SVG -->
+  <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+    <svg style="position:absolute;top:-50px;right:-80px;opacity:0.035;width:600px;height:600px;" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="300" cy="300" r="280" stroke="#EE8114" stroke-width="1.5" fill="none"/>
+      <circle cx="300" cy="300" r="220" stroke="#EE8114" stroke-width="1" fill="none"/>
+      <circle cx="300" cy="300" r="160" stroke="#EE8114" stroke-width="1" fill="none"/>
+      <circle cx="300" cy="300" r="100" stroke="#EE8114" stroke-width="1" fill="none"/>
+      <line x1="300" y1="20" x2="300" y2="580" stroke="#EE8114" stroke-width="0.8"/>
+      <line x1="20" y1="300" x2="580" y2="300" stroke="#EE8114" stroke-width="0.8"/>
+      <line x1="102" y1="102" x2="498" y2="498" stroke="#EE8114" stroke-width="0.5"/>
+      <line x1="498" y1="102" x2="102" y2="498" stroke="#EE8114" stroke-width="0.5"/>
+    </svg>
+    <svg style="position:absolute;bottom:-40px;left:-60px;opacity:0.025;width:400px;height:400px;" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="20" width="360" height="360" stroke="#008080" stroke-width="1.5" fill="none"/>
+      <rect x="70" y="70" width="260" height="260" stroke="#008080" stroke-width="1" fill="none"/>
+      <rect x="120" y="120" width="160" height="160" stroke="#008080" stroke-width="1" fill="none"/>
+    </svg>
+  </div>
+  <div class="sw" style="padding-top:100px;padding-bottom:100px;">
+    <div class="pain-top rv">
+      <div>
+        <span class="sl">Brand Diagnosis · 品牌诊断</span>
+        <h2 class="sh2">你的品牌<br><em style="color:var(--o);font-style:normal;">正在失血</em></h2>
+        <p class="sh2c">识别这四类典型困境 · 找到真正的病灶</p>
+      </div>
+      <p class="pain-lead">
+        大多数企业的视觉问题，不是"不好看"，而是<strong>不一致、不可信、不被记住</strong>。
+        品牌在每一个消费者接触点上悄悄流失影响力 —— 而你可能从未意识到这个代价有多高。
+      </p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card rv d1">
+        <div class="pain-num">01</div>
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="pain-title">No Recognition</div>
+        <div class="pain-title-cn">品牌辨识度近乎为零</div>
+        <p class="pain-desc">换一个场景 —— 展会、海报、朋友圈 —— 消费者认不出你，只好把你归类为"某家公司"而非"那个品牌"。</p>
+        <div class="pain-solve"><span class="pain-solve-dot"></span>品牌识别策略 + LOGO系统 + 核心DNA重建</div>
+      </div>
+      <div class="pain-card rv d2">
+        <div class="pain-num">02</div>
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <div class="pain-title">No Consistency</div>
+        <div class="pain-title-cn">各渠道视觉各说各话</div>
+        <p class="pain-desc">网站、海报、员工名片、产品包装 —— 每一处都像出自不同品牌，消费者无从建立稳定的品牌印象。</p>
+        <div class="pain-solve"><span class="pain-solve-dot"></span>VI 规范手册 + 全接触点应用系统化</div>
+      </div>
+      <div class="pain-card rv d3">
+        <div class="pain-num">03</div>
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="pain-title">No Premium</div>
+        <div class="pain-title-cn">视觉定位拖累溢价能力</div>
+        <p class="pain-desc">产品力足够好，但消费者只愿按平价品对待。视觉档次与实际品质之间的落差，正在吞噬你的利润空间。</p>
+        <div class="pain-solve"><span class="pain-solve-dot"></span>品牌内涵重构 + 高端视觉形象塑造</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-wrap">
+  <div class="mq-track">
+    <span class="mq-item">BRAND STRATEGY <span class="mq-dot"></span></span>
+    <span class="mq-item">品牌识别策略 <span class="mq-dot"></span></span>
+    <span class="mq-item">LOGO CREATION <span class="mq-dot"></span></span>
+    <span class="mq-item">色彩系统 <span class="mq-dot"></span></span>
+    <span class="mq-item">VI GUIDELINE <span class="mq-dot"></span></span>
+    <span class="mq-item">品牌塑造 <span class="mq-dot"></span></span>
+    <span class="mq-item">MARKETING IDENTITY <span class="mq-dot"></span></span>
+    <span class="mq-item">品牌营销识别 <span class="mq-dot"></span></span>
+    <span class="mq-item">BRAND STRATEGY <span class="mq-dot"></span></span>
+    <span class="mq-item">品牌识别策略 <span class="mq-dot"></span></span>
+    <span class="mq-item">LOGO CREATION <span class="mq-dot"></span></span>
+    <span class="mq-item">色彩系统 <span class="mq-dot"></span></span>
+    <span class="mq-item">VI GUIDELINE <span class="mq-dot"></span></span>
+    <span class="mq-item">品牌塑造 <span class="mq-dot"></span></span>
+    <span class="mq-item">MARKETING IDENTITY <span class="mq-dot"></span></span>
+    <span class="mq-item">品牌营销识别 <span class="mq-dot"></span></span>
+  </div>
+</div>
+
+<!-- ══ SERVICE MODULES ══ -->
+<section id="modules" class="sec">
+  <div class="sw" style="padding-top:120px;padding-bottom:0;">
+    <div class="mod-intro rv">
+      <div>
+        <span class="sl">Service Modules · 服务模块</span>
+        <h2 class="sh2">三大模块<br>全链路交付</h2>
+        <p class="sh2c">策略 · 塑造 · 营销识别 · 从品牌定义到落地执行</p>
+      </div>
+      <p class="mod-desc">
+        品牌 VI 不是一次性的设计任务，而是一套持续为品牌创造价值的<strong>系统工程</strong>。
+        希影力的服务从解答"品牌 = ？"出发，经由视觉体系的精准塑造，
+        最终将品牌形象贯穿到每一个消费者接触点 —— <strong>战略、设计、传播三层同步</strong>。
+      </p>
+    </div>
+
+    <!-- Module Tabs -->
+    <div class="mod-nav rv" style="margin-top:56px;">
+      <button class="mod-tab active" data-panel="a">
+        <span class="mod-tab-letter">MODULE</span> A · 品牌识别策略
+      </button>
+      <button class="mod-tab" data-panel="b">
+        <span class="mod-tab-letter">MODULE</span> B · 品牌识别塑造
+      </button>
+      <button class="mod-tab" data-panel="c">
+        <span class="mod-tab-letter">MODULE</span> C · 品牌营销识别
+      </button>
+    </div>
+
+    <div class="mod-panels" style="padding:56px 0 80px;">
+
+      <!-- PANEL A -->
+      <div class="mod-panel active" id="panel-a">
+        <div class="mod-panel-left">
+          <div style="position:relative;">
+          <svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.08;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#EE8114" stroke-width="0.8" fill="none">
+              <line x1="0" y1="50" x2="200" y2="50"/><line x1="0" y1="100" x2="200" y2="100"/>
+              <line x1="0" y1="150" x2="200" y2="150"/><line x1="50" y1="0" x2="50" y2="200"/>
+              <line x1="100" y1="0" x2="100" y2="200"/><line x1="150" y1="0" x2="150" y2="200"/>
+            </g>
+          </svg>
+          <div class="mod-panel-big">A</div>
+        </div>
+          <div style="margin-top:24px;">
+            <div class="mod-panel-tag">Brand Strategy</div>
+            <h3 class="mod-panel-title">BRAND<br>STRATEGY</h3>
+            <p class="mod-panel-cn">品牌识别策略 · 解答"品牌=？"</p>
+            <p class="mod-panel-desc">
+              品牌策略的根本任务是<strong>锁定品牌真正的认知起跳点</strong>。
+              在开始任何设计之前，我们先帮助您深刻理解品牌当前的价值认知现状，
+              重新定义品牌内涵与风格方向 —— 这是所有视觉决策的战略基础。
+            </p>
+            <a href="#contact" class="mod-cta">立即获取品牌诊断 <svg width="13" height="13" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <div class="del-section">
+            <div class="del-label">Part 01 · 品牌洞察 — 帮助锁定品牌认知起跳点</div>
+            <div class="del-grid">
+              <div class="del-item"><span class="del-dot"></span><div>品牌客户认知聚焦<span class="del-cn">明确目标受众对品牌的真实认知现状</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>品牌价值点洞察<span class="del-cn">挖掘品牌差异化优势与核心价值支撑</span></div></div>
+            </div>
+          </div>
+          <div class="del-section">
+            <div class="del-label">Part 02 · 品牌内涵 — 顶层构建占据客户心智</div>
+            <div class="del-grid">
+              <div class="del-item"><span class="del-dot"></span><div>品牌感知价值<span class="del-cn">从消费者视角定义品牌感知层次</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>品牌内涵规划<span class="del-cn">构建品牌使命、愿景、价值观体系</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>品牌风格定义<span class="del-cn">确立视觉调性的战略指导方向</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>品牌发展策略<span class="del-cn">制定品牌优势成长路径规划</span></div></div>
+            </div>
+          </div>
+          <div style="padding:24px;background:var(--o-dim);border-left:3px solid var(--o);">
+            <p style="font-family:var(--CN);font-size:13.5px;font-weight:300;line-height:1.85;color:var(--mid);">
+              <strong style="color:var(--dark);font-weight:600;">为什么要从策略开始？</strong><br>
+              跳过策略直接做设计，就像没有地图就开始建房。
+              即使设计结果"好看"，也无法与品牌的商业目标和消费者认知精准对齐，
+              最终浪费的不只是设计费用，而是整个品牌建设周期。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL B -->
+      <div class="mod-panel" id="panel-b">
+        <div class="mod-panel-left">
+          <div class="mod-panel-big">B</div>
+          <div style="margin-top:24px;">
+            <div class="mod-panel-tag">Brand Identity</div>
+            <h3 class="mod-panel-title">BRAND<br>IDENTITY</h3>
+            <p class="mod-panel-cn">品牌识别塑造 · 视觉规范全系交付</p>
+            <p class="mod-panel-desc">
+              为企业打造符合品牌策略定位的<strong>统一规范形象识别系统</strong>，
+              实现品牌价值对目标受众全接触点的优越感知营造与传导。
+              从LOGO核心DNA到终端应用规范，覆盖品牌全场景使用。
+            </p>
+            <a href="#contact" class="mod-cta">获取完整报价方案 <svg width="13" height="13" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <div class="del-section">
+            <div class="del-label">Part 01 · 品牌核心DNA — LOGO + 色彩 + 品牌要素</div>
+            <div class="del-grid">
+              <div class="del-item"><span class="del-dot"></span><div>LOGO创意设计
+                <span class="del-cn">含创意说明、标准化制图、比例规范</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>LOGO使用规范全集<span class="del-cn">彩色/单色/黑白规范 + 禁止使用规则</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>标准色系与辅助色系<span class="del-cn">印刷色、RGB色双套规范 + 搭配组合表</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>品牌要素组合规范<span class="del-cn">LOGO与中/英文横竖组合全规范</span></div></div>
+            </div>
+          </div>
+          <div class="del-section">
+            <div class="del-label">Part 02–04 · 基础应用 · 产品应用 · 终端体验</div>
+            <div class="del-grid">
+              <div class="del-item"><span class="del-dot"></span><div>品牌办公应用全套<span class="del-cn">办公环境、名片、工牌工服、信封、Word/PPT/Excel模板等</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>品牌产品应用规范<span class="del-cn">LOGO/元素在产品上的使用规范 + 实景效果 + 快递包装</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>品牌终端体验设计<span class="del-cn">产品价值展示牌、户外T牌广告规范、店铺物料</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>电子光效展示设计<span class="del-cn">产品价值点信息创新展示（电子光效）</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL C -->
+      <div class="mod-panel" id="panel-c">
+        <div class="mod-panel-left">
+          <div class="mod-panel-big">C</div>
+          <div style="margin-top:24px;">
+            <div class="mod-panel-tag">Marketing Identity</div>
+            <h3 class="mod-panel-title">MARKETING<br>IDENTITY</h3>
+            <p class="mod-panel-cn">品牌营销识别 · 传播物料全链落地</p>
+            <p class="mod-panel-desc">
+              将品牌识别延伸至<strong>所有营销与传播物料</strong> —— 户外广告、电子宣传、宣传册、
+              PPT 模板，乃至品牌形象 3D 视频。确保品牌在每一次消费者接触时都说同一种语言。
+            </p>
+            <a href="#contact" class="mod-cta">定制营销物料方案 <svg width="13" height="13" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <div class="del-section">
+            <div class="del-label">Part 01 · 品牌传播规范 — 户外 + 数字双端</div>
+            <div class="del-grid">
+              <div class="del-item"><span class="del-dot"></span><div>品牌形象宣传广告横/竖式<span class="del-cn">户外广告标准规范 · 各场景尺寸适配</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>品牌产品宣传广告设计<span class="del-cn">产品专项传播物料 · 线下/线上通用版</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>手机端长图设计<span class="del-cn">品牌形象 + 产品宣传手机端竖版</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>电脑端横式广告设计<span class="del-cn">品牌形象 + 产品宣传电脑端横版</span></div></div>
+            </div>
+          </div>
+          <div class="del-section">
+            <div class="del-label">Part 02–03 · 宣传册 · PPT · 3D 品牌视频</div>
+            <div class="del-grid">
+              <div class="del-item"><span class="del-dot"></span><div>品牌系列产品宣传册规范<span class="del-cn">封面 + 内页系列化风格设计规范</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>品牌系列产品PPT规范<span class="del-cn">PPT封面 + 内页系列化品牌风格规范</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>品牌新LOGO 3D宣传视频<span class="del-cn" style="color:var(--o);">★ 品牌影响力最强传播载体</span></div></div>
+              <div class="del-item"><span class="del-dot"></span><div>品牌周边产品设计<span class="del-cn">品牌元素在周边产品上的创意应用</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FULL DELIVERABLES ══ -->
+<section id="deliverables" class="sec">
+  <div class="sw rv">
+    <div style="text-align:center;max-width:660px;margin:0 auto 52px;">
+      <span class="sl">Complete Deliverables · 完整交付清单</span>
+      <h2 class="sh2">你将收到什么</h2>
+      <p class="sh2c">全项目服务内容一览 · 透明交付无隐藏</p>
+    </div>
+    <div class="del-table-wrap">
+      <div class="del-table-header">
+        <div>服务模块</div>
+        <div>核心交付项</div>
+        <div>业务价值</div>
+      </div>
+      <div class="del-row">
+        <div class="del-cell">
+          <span class="del-cell-cat">Module A</span>
+          品牌识别策略
+        </div>
+        <div class="del-cell">
+          <ul class="del-items-list">
+            <li>品牌客户认知聚焦报告</li>
+            <li>品牌价值点洞察分析</li>
+            <li>品牌感知价值定义</li>
+            <li>品牌内涵与风格定义文件</li>
+          </ul>
+        </div>
+        <div class="del-cell" style="font-family:var(--CN);font-size:13px;color:var(--muted);line-height:1.75;">
+          为所有视觉决策建立战略基础，确保设计方向与商业目标精准对齐。避免"好看但无用"的设计陷阱。
+        </div>
+      </div>
+      <div class="del-row">
+        <div class="del-cell">
+          <span class="del-cell-cat">Module B</span>
+          品牌识别塑造
+        </div>
+        <div class="del-cell">
+          <ul class="del-items-list">
+            <li>LOGO 创意设计 + 全套使用规范</li>
+            <li>标准色系 / 辅助色系 + 搭配表</li>
+            <li>品牌办公物料全套（名片/信封/PPT等）</li>
+            <li>产品应用规范 + 快递包装设计</li>
+            <li>户外T牌 + 终端展示设计</li>
+          </ul>
+        </div>
+        <div class="del-cell" style="font-family:var(--CN);font-size:13px;color:var(--muted);line-height:1.75;">
+          构建品牌视觉系统的核心资产，让品牌在所有接触点上传递一致、可信、有记忆点的形象。
+        </div>
+      </div>
+      <div class="del-row">
+        <div class="del-cell">
+          <span class="del-cell-cat">Module C</span>
+          品牌营销识别
+        </div>
+        <div class="del-cell">
+          <ul class="del-items-list">
+            <li>户外广告 + 宣传海报（横/竖式）</li>
+            <li>数字端广告（手机长图 + 电脑横版）</li>
+            <li>品牌宣传册 + PPT 系列化风格规范</li>
+            <li>品牌新LOGO 3D形象宣传视频</li>
+          </ul>
+        </div>
+        <div class="del-cell" style="font-family:var(--CN);font-size:13px;color:var(--muted);line-height:1.75;">
+          将品牌资产转化为可立即投入使用的传播工具，覆盖线上线下全媒体场景，最大化品牌曝光价值。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ══ -->
+<section id="process" class="sec">
+  <div class="sw" style="padding:120px 44px;">
+    <div class="proc-top rv">
+      <div>
+        <span class="sl" style="color:rgba(255,255,255,.5);--o:rgba(255,255,255,.5);">Workflow · 合作流程</span>
+        <h2 class="sh2" style="color:#fff;">五步交付<br><em style="color:var(--o);font-style:normal;">确定性结果</em></h2>
+        <p class="sh2c">清晰的节点管理 · 全程高效沟通</p>
+      </div>
+      <p class="proc-desc">
+        每一个品牌项目都是独特的，但混乱的流程只会浪费时间、制造误解。
+        我们建立了一套<strong> 经过50+品牌项目验证的标准化工作流</strong>，
+        让您在每一个阶段都清楚知道进展、下一步是什么、以及如何把控质量。
+      </p>
+    </div>
+    <div style="margin-bottom:52px;opacity:0.5;">
+      <svg viewBox="0 0 1120 60" xmlns="http://www.w3.org/2000/svg" width="100%" height="60" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="procGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#EE8114" stop-opacity="0.1"/>
+            <stop offset="50%" stop-color="#EE8114" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#EE8114" stop-opacity="0.1"/>
+          </linearGradient>
+        </defs>
+        <!-- Timeline base line -->
+        <line x1="112" y1="30" x2="1008" y2="30" stroke="url(#procGrad)" stroke-width="1.5"/>
+        <!-- Step nodes -->
+        <circle cx="112" cy="30" r="12" stroke="#EE8114" stroke-width="1.5" fill="rgba(238,129,20,0.1)"/>
+        <circle cx="336" cy="30" r="12" stroke="#EE8114" stroke-width="1.5" fill="rgba(238,129,20,0.1)"/>
+        <circle cx="560" cy="30" r="12" stroke="#EE8114" stroke-width="1.5" fill="rgba(238,129,20,0.1)"/>
+        <circle cx="784" cy="30" r="12" stroke="#EE8114" stroke-width="1.5" fill="rgba(238,129,20,0.1)"/>
+        <circle cx="1008" cy="30" r="12" stroke="#EE8114" stroke-width="1.5" fill="rgba(238,129,20,0.2)"/>
+        <!-- Arrow at end -->
+        <polygon points="1020,26 1030,30 1020,34" fill="#EE8114" opacity="0.6"/>
+        <!-- Chevrons between nodes -->
+        <text x="224" y="35" fill="rgba(238,129,20,0.3)" font-size="12" font-family="sans-serif" text-anchor="middle">›</text>
+        <text x="448" y="35" fill="rgba(238,129,20,0.3)" font-size="12" font-family="sans-serif" text-anchor="middle">›</text>
+        <text x="672" y="35" fill="rgba(238,129,20,0.3)" font-size="12" font-family="sans-serif" text-anchor="middle">›</text>
+        <text x="896" y="35" fill="rgba(238,129,20,0.3)" font-size="12" font-family="sans-serif" text-anchor="middle">›</text>
+      </svg>
+    </div>
+    <div class="proc-steps rv">
+      <div class="proc-step">
+        <div class="proc-step-num">01</div>
+        <div class="proc-step-title">BRIEF</div>
+        <div class="proc-step-cn">深度需求洞察</div>
+        <p class="proc-step-desc">了解业务背景、竞争格局、目标受众与品牌期望，建立共同的项目语境。</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-step-num">02</div>
+        <div class="proc-step-title">STRATEGY</div>
+        <div class="proc-step-cn">品牌策略定义</div>
+        <p class="proc-step-desc">完成Module A，输出品牌洞察报告与内涵定义，确认视觉方向共识。</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-step-num">03</div>
+        <div class="proc-step-title">DESIGN</div>
+        <div class="proc-step-cn">视觉方案提案</div>
+        <p class="proc-step-desc">基于策略进行LOGO与视觉体系创作，提供1–2个差异化方向供选择。</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-step-num">04</div>
+        <div class="proc-step-title">REFINE</div>
+        <div class="proc-step-cn">深化与规范制定</div>
+        <p class="proc-step-desc">选定方向后深化细节，完成色彩/字体/应用规范全套VI手册制作。</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-step-num">05</div>
+        <div class="proc-step-title">DELIVER</div>
+        <div class="proc-step-cn">落地交付与培训</div>
+        <p class="proc-step-desc">交付源文件与规范手册，提供使用培训，通过评审委员会终审确认。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CASES ══ -->
+<!-- Visual bridge: brand transformation visual -->
+<div style="background:var(--white);padding:0;overflow:hidden;border-top:1px solid var(--line-lt);">
+  <svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" width="100%" height="120" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="bridgeG" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#EE8114" stop-opacity="0.04"/>
+        <stop offset="30%" stop-color="#EE8114" stop-opacity="0.10"/>
+        <stop offset="70%" stop-color="#008080" stop-opacity="0.08"/>
+        <stop offset="100%" stop-color="#008080" stop-opacity="0.03"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="1200" height="120" fill="url(#bridgeG)"/>
+    <!-- Measurement ruler marks -->
+    <g stroke="rgba(0,0,0,0.08)" stroke-width="1">
+      <line x1="0" y1="60" x2="1200" y2="60"/>
+      <line x1="100" y1="50" x2="100" y2="70"/>
+      <line x1="200" y1="53" x2="200" y2="67"/>
+      <line x1="300" y1="50" x2="300" y2="70"/>
+      <line x1="400" y1="53" x2="400" y2="67"/>
+      <line x1="500" y1="50" x2="500" y2="70"/>
+      <line x1="600" y1="46" x2="600" y2="74"/>
+      <line x1="700" y1="50" x2="700" y2="70"/>
+      <line x1="800" y1="53" x2="800" y2="67"/>
+      <line x1="900" y1="50" x2="900" y2="70"/>
+      <line x1="1000" y1="53" x2="1000" y2="67"/>
+      <line x1="1100" y1="50" x2="1100" y2="70"/>
+    </g>
+    <!-- Brand label chips -->
+    <text x="100" y="45" font-family="sans-serif" font-size="9" fill="rgba(238,129,20,0.5)" text-anchor="middle" letter-spacing="2">STRATEGY</text>
+    <text x="400" y="45" font-family="sans-serif" font-size="9" fill="rgba(238,129,20,0.5)" text-anchor="middle" letter-spacing="2">IDENTITY</text>
+    <text x="700" y="45" font-family="sans-serif" font-size="9" fill="rgba(238,129,20,0.5)" text-anchor="middle" letter-spacing="2">DESIGN</text>
+    <text x="1000" y="45" font-family="sans-serif" font-size="9" fill="rgba(0,128,128,0.5)" text-anchor="middle" letter-spacing="2">DELIVER</text>
+    <!-- Flow arrows -->
+    <polygon points="248,57 260,60 248,63" fill="rgba(238,129,20,0.2)"/>
+    <polygon points="548,57 560,60 548,63" fill="rgba(238,129,20,0.2)"/>
+    <polygon points="848,57 860,60 848,63" fill="rgba(238,129,20,0.2)"/>
+  </svg>
+</div>
+<section id="vi-cases" class="sec">
+  <div class="sw" style="padding-top:120px;padding-bottom:0;">
+    <div class="cases-top rv">
+      <div>
+        <span class="sl">Portfolio · 案例展示</span>
+        <h2 class="sh2">真实项目<br>可见的结果</h2>
+        <p class="sh2c">覆盖科技 · 快消 · 文旅 · 食品等核心领域</p>
+      </div>
+      <p class="cases-desc">
+        我们相信，最好的说明书是客户增长的数字，
+        以及每一个被认出来的品牌。<br><strong>每一套VI背后，都有一个清晰的商业目标在驱动设计决策。</strong></br>
+      </p>
+    </div>
+
+    <div class="cases-grid">
+
+      <!-- CASE B - WIDE (原案例2，现调至首位宽卡) -->
+      <div class="case-card wide rv">
+        <div class="case-visual">
+          <div class="case-visual-bg" style="background:linear-gradient(135deg,#140a02 0%,#241408 55%,#1a0e04 100%);"></div>
+          <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 900 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs><filter id="gf2"><feGaussianBlur stdDeviation="20"/></filter></defs>
+            <!-- Wide shelf / retail packaging silhouettes -->
+            <g stroke="rgba(238,129,20,0.16)" stroke-width="1" fill="none">
+              <rect x="40"  y="80"  width="52" height="140" rx="3"/>
+              <rect x="100" y="60"  width="62" height="160" rx="3"/>
+              <rect x="170" y="90"  width="50" height="130" rx="3"/>
+              <rect x="228" y="50"  width="70" height="170" rx="4"/>
+              <rect x="308" y="75"  width="54" height="145" rx="3"/>
+              <rect x="370" y="58"  width="62" height="162" rx="3"/>
+              <rect x="440" y="85"  width="50" height="135" rx="3"/>
+              <rect x="498" y="44"  width="74" height="176" rx="4"/>
+              <rect x="580" y="78"  width="52" height="142" rx="3"/>
+              <rect x="640" y="62"  width="60" height="158" rx="3"/>
+              <rect x="708" y="88"  width="48" height="132" rx="3"/>
+              <rect x="764" y="52"  width="68" height="168" rx="4"/>
+              <rect x="840" y="80"  width="52" height="140" rx="3"/>
+            </g>
+            <!-- Colourful label highlights -->
+            <g fill="rgba(238,129,20,0.2)">
+              <rect x="46"  y="100" width="40" height="22" rx="2"/>
+              <rect x="106" y="82"  width="50" height="24" rx="2"/>
+              <rect x="234" y="70"  width="58" height="26" rx="2"/>
+              <rect x="376" y="80"  width="50" height="24" rx="2"/>
+              <rect x="504" y="64"  width="62" height="26" rx="2"/>
+              <rect x="646" y="84"  width="48" height="22" rx="2"/>
+              <rect x="770" y="72"  width="56" height="26" rx="2"/>
+            </g>
+            <!-- Ground shelf line -->
+            <line x1="20" y1="228" x2="880" y2="228" stroke="rgba(238,129,20,0.22)" stroke-width="1.5"/>
+            <!-- Spotlight glow under shelves -->
+            <ellipse cx="450" cy="228" rx="380" ry="40" fill="rgba(238,129,20,0.05)" filter="url(#gf2)"/>
+            <!-- Sparkle stars scattered wide -->
+            <g stroke="rgba(255,210,80,0.55)" stroke-width="1.4" fill="none">
+              <line x1="180" y1="36" x2="180" y2="26"/><line x1="175" y1="31" x2="185" y2="31"/>
+              <line x1="420" y1="28" x2="420" y2="18"/><line x1="415" y1="23" x2="425" y2="23"/>
+              <line x1="660" y1="34" x2="660" y2="24"/><line x1="655" y1="29" x2="665" y2="29"/>
+              <line x1="820" y1="26" x2="820" y2="16"/><line x1="815" y1="21" x2="825" y2="21"/>
+            </g>
+            <!-- Subtle brand-awareness arc -->
+            <path d="M80,230 Q450,140 820,230" stroke="rgba(238,129,20,0.12)" stroke-width="1.5" fill="none" stroke-dasharray="10 6"/>
+          </svg>
+          <div class="case-visual-txt">
+            <div class="case-visual-brand">快消品牌 B 公司</div>
+            <div class="case-visual-type">快消品 · VI全案 + 包装设计体系</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-meta">
+            <span class="case-tag-badge">VI全案</span>
+            <span class="case-industry">快消品 · 全渠道零售品牌</span>
+          </div>
+          <h3 class="case-title">某快消品牌 A 公司</h3>
+          <p class="case-title-cn">全渠道快消品牌视觉系统重塑 · 终端货架识别力提升</p>
+          <p class="case-desc">A公司深耕快消品赛道多年，随着 SKU 扩张与线上线下双渠道布局提速，原有品牌视觉碎片化严重，终端货架辨识度低，与竞品难以区隔。希影力从品牌战略洞察切入，重新定义品牌核心视觉语言，建立统一的色彩体系、产品包装规范与全渠道物料标准，同步完成线下终端陈列视觉、线上旗舰店主视觉及社交媒体内容框架，帮助A公司在核心货架争夺战中实现显著的视觉突围。</p>
+          <div class="case-results">
+            <div class="case-result-item">
+              <span class="case-result-num">1<span>周</span></span>
+              <span class="case-result-label">核心VI体系交付</span>
+            </div>
+            <div class="case-result-item">
+              <span class="case-result-num">40<span>+</span></span>
+              <span class="case-result-label">包装 & 物料规范页</span>
+            </div>
+            <div class="case-result-item">
+              <span class="case-result-num">全渠道</span>
+              <span class="case-result-label">线上线下同步落地</span>
+            </div>
+          </div>
+          <a href="#contact" class="case-link">预约同类项目咨询 <svg width="10" height="10" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </div>
+
+      <!-- CASE A (原宽卡，现调为普通卡) -->
+      <div class="case-card rv d1">
+        <div class="case-visual" style="height:180px;">
+          <div class="case-visual-bg" style="background:linear-gradient(135deg,#060c1a 0%,#0d1c35 60%,#081528 100%);"></div>
+          <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 500 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="sg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EE8114" stop-opacity="0.8"/><stop offset="100%" stop-color="#d4720f" stop-opacity="0.2"/></linearGradient>
+              <filter id="sf1"><feGaussianBlur stdDeviation="14"/></filter>
+            </defs>
+            <!-- Broadcast waveform -->
+            <g stroke="rgba(238,129,20,0.28)" stroke-width="1.5" fill="none">
+              <polyline points="0,100 40,88 70,112 110,62 150,125 190,50 230,118 270,70 310,105 350,56 390,100 430,76 470,106 500,82"/>
+              <polyline points="0,115 40,103 70,127 110,77 150,140 190,65 230,133 270,85 310,120 350,71 390,115 430,91 470,121 500,97" opacity="0.35"/>
+            </g>
+            <!-- Grid -->
+            <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
+              <line x1="0" y1="45" x2="500" y2="45"/>
+              <line x1="0" y1="90" x2="500" y2="90"/>
+              <line x1="0" y1="135" x2="500" y2="135"/>
+              <line x1="100" y1="0" x2="100" y2="180"/>
+              <line x1="200" y1="0" x2="200" y2="180"/>
+              <line x1="300" y1="0" x2="300" y2="180"/>
+              <line x1="400" y1="0" x2="400" y2="180"/>
+            </g>
+            <!-- Dots -->
+            <circle cx="100" cy="90" r="3" fill="rgba(238,129,20,0.5)"/>
+            <circle cx="300" cy="90" r="3" fill="rgba(238,129,20,0.4)"/>
+            <!-- Tech circle -->
+            <circle cx="400" cy="50" r="32" stroke="rgba(238,129,20,0.2)" stroke-width="1.5" fill="none" stroke-dasharray="6 3"/>
+            <circle cx="400" cy="50" r="20" stroke="rgba(238,129,20,0.12)" stroke-width="1" fill="none"/>
+            <!-- Glow -->
+            <circle cx="250" cy="90" r="80" fill="rgba(14,40,80,0.8)" filter="url(#sf1)"/>
+          </svg>
+          <div class="case-visual-txt">
+            <div class="case-visual-brand" style="font-size:26px;">科技行业 B 公司</div>
+            <div class="case-visual-type">科技 · Brand VI全案 + 产品宣传册</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-meta">
+            <span class="case-tag-badge">VI全案</span>
+            <span class="case-industry">智慧视听科技 · 上市企业</span>
+          </div>
+          <h3 class="case-title">某科技上市企业 B 公司</h3>
+          <p class="case-title-cn">广播电视设备行业领军品牌 · 品牌视觉全面升级</p>
+          <p class="case-desc">B公司从"技术驱动"向"品牌驱动"战略转型，需要一套能在全球展会和国际客户面前立得住的高端视觉识别体系。希影力完成了品牌核心DNA重建、VI规范手册制定与完整产品宣传物料体系搭建，帮助B公司在顶级行业展会上建立了"智慧视听·呈现未来"的强势品牌形象。</p>
+          <div class="case-results">
+            <div class="case-result-item">
+              <span class="case-result-num">2<span>周</span></span>
+              <span class="case-result-label">完整VI体系交付</span>
+            </div>
+            <div class="case-result-item">
+              <span class="case-result-num">A→C</span>
+              <span class="case-result-label">三模块全覆盖</span>
+            </div>
+            <div class="case-result-item">
+              <span class="case-result-num">60<span>+</span></span>
+              <span class="case-result-label">VI应用规范页数</span>
+            </div>
+          </div>
+          <a href="#contact" class="case-link">预约同类项目咨询 <svg width="10" height="10" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </div>
+
+      <!-- CASE E - 食品行业 E 公司 · 产品IP创建并应用 (新增) -->
+      <div class="case-card rv d2">
+        <div class="case-visual" style="height:180px;">
+          <div class="case-visual-bg" style="background:linear-gradient(135deg,#120800 0%,#1e1002 60%,#160b00 100%);"></div>
+          <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 500 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs><filter id="ef"><feGaussianBlur stdDeviation="14"/></filter></defs>
+            <!-- Central IP character body silhouette (rounded, friendly) -->
+            <g fill="none" stroke="rgba(255,165,30,0.28)" stroke-width="1.5">
+              <!-- Head -->
+              <circle cx="250" cy="68" r="34"/>
+              <!-- Ears -->
+              <circle cx="222" cy="46" r="12"/>
+              <circle cx="278" cy="46" r="12"/>
+              <!-- Body -->
+              <path d="M218,100 Q210,148 230,158 L270,158 Q290,148 282,100 Z"/>
+              <!-- Arms -->
+              <path d="M220,110 Q192,118 186,135" stroke-linecap="round"/>
+              <path d="M280,110 Q308,118 314,135" stroke-linecap="round"/>
+            </g>
+            <!-- Facial features hint -->
+            <g fill="rgba(255,165,30,0.4)">
+              <circle cx="240" cy="64" r="4"/>
+              <circle cx="260" cy="64" r="4"/>
+              <path d="M241,76 Q250,84 259,76" stroke="rgba(255,165,30,0.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </g>
+            <!-- IP application: small product pack shapes on sides -->
+            <g stroke="rgba(255,165,30,0.16)" stroke-width="1" fill="none">
+              <rect x="50"  y="55" width="44" height="80" rx="6"/>
+              <rect x="58"  y="65" width="28" height="20" rx="3" fill="rgba(255,165,30,0.12)" stroke="none"/>
+              <!-- mini character on pack -->
+              <circle cx="72" cy="106" r="8" stroke="rgba(255,165,30,0.25)"/>
+              <rect x="380" y="55" width="44" height="80" rx="6"/>
+              <rect x="388" y="65" width="28" height="20" rx="3" fill="rgba(255,165,30,0.12)" stroke="none"/>
+              <circle cx="402" cy="106" r="8" stroke="rgba(255,165,30,0.25)"/>
+            </g>
+            <!-- Stars / sparkles — playful brand energy -->
+            <g stroke="rgba(255,210,60,0.7)" stroke-width="1.6" fill="none">
+              <line x1="148" y1="38" x2="148" y2="28"/><line x1="143" y1="33" x2="153" y2="33"/>
+              <line x1="352" y1="34" x2="352" y2="24"/><line x1="347" y1="29" x2="357" y2="29"/>
+              <line x1="110" y1="130" x2="110" y2="122"/><line x1="106" y1="126" x2="114" y2="126"/>
+              <line x1="392" y1="128" x2="392" y2="120"/><line x1="388" y1="124" x2="396" y2="124"/>
+            </g>
+            <!-- Wavy ground line -->
+            <path d="M20,165 Q130,155 250,165 Q370,175 480,165" stroke="rgba(255,165,30,0.18)" stroke-width="1.2" fill="none"/>
+            <!-- Warm glow -->
+            <ellipse cx="250" cy="120" rx="160" ry="60" fill="rgba(200,80,10,0.12)" filter="url(#ef)"/>
+          </svg>
+          <div class="case-visual-txt">
+            <div class="case-visual-brand" style="font-size:26px;color:#ffb830;">食品行业 E 公司</div>
+            <div class="case-visual-type">食品 · 产品IP创建并应用</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-meta">
+            <span class="case-tag-badge">IP创建</span>
+            <span class="case-industry">食品 · 健康零食品牌</span>
+          </div>
+          <h3 class="case-title">某食品行业 C 公司</h3>
+          <p class="case-title-cn">品牌吉祥物IP从零构建 · 全品类包装及数字端应用</p>
+          <p class="case-desc">C公司深耕健康零食赛道，面临与竞品高度同质化的困境，急需通过差异化的品牌IP形象在消费者心智中建立独特记忆点。希影力为其从零构建品牌吉祥物IP形象，完成IP人物设定、表情包体系与全品类包装应用规范，打造出受年轻消费者喜爱的品牌拟人化角色，带动产品在社交媒体上的自传播，显著提升品牌好感度与互动率。</p>
+          <div class="case-results">
+            <div class="case-result-item">
+              <span class="case-result-num">0→1</span>
+              <span class="case-result-label">IP形象从零创建</span>
+            </div>
+            <div class="case-result-item">
+              <span class="case-result-num">全品类</span>
+              <span class="case-result-label">包装应用落地</span>
+            </div>
+            <div class="case-result-item">
+              <span class="case-result-num">↑</span>
+              <span class="case-result-label">社媒互动率显著提升</span>
+            </div>
+          </div>
+          <a href="#contact" class="case-link">预约同类项目咨询 <svg width="10" height="10" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </div>
+
+      <!-- CASE C -->
+      <div class="case-card rv d3">
+        <div class="case-visual" style="height:180px;">
+          <div class="case-visual-bg" style="background:linear-gradient(135deg,#08100a 0%,#0d1a12 100%);"></div>
+          <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 500 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs><filter id="mf"><feGaussianBlur stdDeviation="14"/></filter></defs>
+            <g stroke="rgba(238,129,20,0.2)" stroke-width="1.5" fill="none">
+              <path d="M100,30 Q200,90 100,150" stroke-dasharray="6 3"/>
+              <path d="M140,30 Q40,90 140,150" stroke-dasharray="6 3"/>
+              <line x1="105" y1="50" x2="135" y2="45"/>
+              <line x1="110" y1="70" x2="130" y2="75"/>
+              <line x1="108" y1="90" x2="133" y2="90"/>
+              <line x1="110" y1="110" x2="130" y2="107"/>
+              <line x1="108" y1="130" x2="133" y2="136"/>
+            </g>
+            <g stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="none">
+              <circle cx="320" cy="90" r="50"/>
+              <circle cx="320" cy="90" r="35"/>
+              <circle cx="320" cy="90" r="20"/>
+              <circle cx="370" cy="60" r="15" stroke="rgba(238,129,20,0.25)"/>
+              <circle cx="280" cy="120" r="12" stroke="rgba(238,129,20,0.2)"/>
+              <line x1="320" y1="55" x2="370" y2="65" stroke="rgba(255,255,255,0.1)"/>
+              <line x1="305" y1="110" x2="285" y2="118" stroke="rgba(255,255,255,0.1)"/>
+            </g>
+            <g stroke="rgba(238,129,20,0.3)" stroke-width="1">
+              <line x1="400" y1="40" x2="400" y2="80"/>
+              <line x1="380" y1="60" x2="420" y2="60"/>
+              <circle cx="400" cy="60" r="8" fill="none" stroke="rgba(238,129,20,0.4)"/>
+            </g>
+            <circle cx="320" cy="90" r="80" fill="rgba(10,30,50,0.5)" filter="url(#mf)"/>
+          </svg>
+          <div class="case-visual-txt">
+            <div class="case-visual-brand" style="font-size:32px;">咖啡品牌 C 公司</div>
+            <div class="case-visual-type">文旅消费体验 · 品牌全案</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-meta">
+            <span class="case-tag-badge">品牌全案</span>
+            <span class="case-industry">文旅消费 · 新建咖啡品牌</span>
+          </div>
+          <h3 class="case-title">某咖啡品牌D公司</h3>
+          <p class="case-title-cn">中高端咖啡品牌视觉战略升级</p>
+          <p class="case-desc">帮助D公司创建面向中高端市场的全新品牌视觉体系，包含品牌LOGO、全套VI识别系统、产品包装应用、宣传视频等完整品牌物料应用设计。</p>
+          <div class="case-results">
+            <div class="case-result-item">
+              <span class="case-result-num">3<span>天</span></span>
+              <span class="case-result-label">全案设计到交付</span>
+            </div>
+            <div class="case-result-item">
+              <span class="case-result-num">3<span>层</span></span>
+              <span class="case-result-label">品牌LOGO/物料应用/包装设计/音视频</span>
+            </div>
+            <div class="case-result-item">
+              <span class="case-result-num">80<span>+</span></span>
+              <span class="case-result-label">营销物料 & 规范页数</span>
+            </div>
+          </div>
+          <a href="#contact" class="case-link">预约同类项目咨询 <svg width="10" height="10" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </div>
+      <!-- CASE D -->
+      <div class="case-card rv d4">
+        <div class="case-visual" style="height:180px;">
+          <div class="case-visual-bg" style="background:linear-gradient(135deg,#03100e 0%,#071a16 60%,#041210 100%);"></div>
+          <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 500 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs><filter id="df"><feGaussianBlur stdDeviation="14"/></filter></defs>
+            <g fill="rgba(0,160,140,0.15)" stroke="none">
+              <polygon points="0,180 60,90 120,130 180,60 260,110 330,50 400,100 470,70 500,90 500,180"/>
+            </g>
+            <g fill="rgba(0,180,155,0.09)" stroke="none">
+              <polygon points="0,180 30,120 100,150 170,90 240,130 320,80 390,115 460,85 500,100 500,180"/>
+            </g>
+            <circle cx="330" cy="52" r="36" fill="none" stroke="rgba(0,200,170,0.2)" stroke-width="1.5"/>
+            <circle cx="330" cy="52" r="24" fill="none" stroke="rgba(0,200,170,0.15)" stroke-width="1"/>
+            <circle cx="330" cy="52" r="12" fill="rgba(0,200,170,0.2)"/>
+            <path d="M30,155 Q120,100 200,120 Q280,140 360,90 Q420,60 470,80" stroke="rgba(238,129,20,0.35)" stroke-width="1.5" fill="none" stroke-dasharray="8 4"/>
+            <circle cx="200" cy="120" r="5" fill="rgba(238,129,20,0.6)" stroke="none"/>
+            <circle cx="360" cy="90" r="5" fill="rgba(238,129,20,0.6)" stroke="none"/>
+            <circle cx="470" cy="80" r="4" fill="rgba(238,129,20,0.5)" stroke="none"/>
+            <ellipse cx="250" cy="140" rx="180" ry="50" fill="rgba(0,100,90,0.2)" filter="url(#df)"/>
+          </svg>
+          <div class="case-visual-txt">
+            <div class="case-visual-brand" style="font-size:26px;color:#00c8b0;">文旅集团 D 公司</div>
+            <div class="case-visual-type">文旅集团 · 品牌全案 + 营销物料</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-meta">
+            <span class="case-tag-badge">品牌全案</span>
+            <span class="case-industry">文化旅游 · 多目的地运营集团</span>
+          </div>
+          <h3 class="case-title">某文旅集团 E 公司</h3>
+          <p class="case-title-cn">多目的地文旅集团品牌形象统一重塑 · 营销传播体系搭建</p>
+          <p class="case-desc">E公司旗下运营多个文旅目的地，各项目品牌视觉风格各异，缺乏统一的集团母品牌识别，严重制约了市场整体声量与品牌溢价。希影力承接集团品牌战略梳理与视觉体系重建，建立"集团主品牌 + 子目的地"双层品牌架构，完成集团LOGO升级、色彩规范、宣传海报体系、展会主视觉及四季营销物料全套设计，助力E公司在旅游旺季实现跨目的地的品牌协同传播。</p>
+          <div class="case-results">
+            <div class="case-result-item">
+              <span class="case-result-num">1<span>个月</span></span>
+              <span class="case-result-label">全案策略到交付</span>
+            </div>
+            <div class="case-result-item">
+              <span class="case-result-num">3<span>层</span></span>
+              <span class="case-result-label">集团/目的地/活动品牌</span>
+            </div>
+            <div class="case-result-item">
+              <span class="case-result-num">60<span>+</span></span>
+              <span class="case-result-label">营销物料 & 规范页数</span>
+            </div>
+          </div>
+          <a href="#contact" class="case-link">预约同类项目咨询 <svg width="10" height="10" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section id="testimonials" class="sec">
+  <div class="sw" style="padding:120px 44px;">
+    <div style="text-align:center;margin-bottom:48px;opacity:0.6;">
+      <svg viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg" width="120" height="32">
+        <line x1="0" y1="16" x2="40" y2="16" stroke="#EE8114" stroke-width="1.5" opacity="0.4"/>
+        <circle cx="60" cy="16" r="8" stroke="#EE8114" stroke-width="1.5" fill="rgba(238,129,20,0.1)"/>
+        <circle cx="60" cy="16" r="3" fill="#EE8114" opacity="0.7"/>
+        <line x1="80" y1="16" x2="120" y2="16" stroke="#EE8114" stroke-width="1.5" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="testi-top rv">
+      <span class="sl">Client Voice · 客户心声</span>
+      <h2 class="sh2">他们选择了我们</h2>
+      <p class="sh2c">真实合作客户的真实反馈 · 不加滤镜</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card rv d1">
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">原来觉得VI就是做个LOGO，合作之后才明白品牌识别是个系统工程。从策略洞察开始，希影力帮我们厘清了品牌真正的差异化价值点，设计结果让展会上的客户一眼就记住了我们。</p>
+        <div class="testi-author">
+          <div class="testi-avatar">王</div>
+          <div>
+            <div class="testi-name">王总监</div>
+            <div class="testi-role">品牌市场部 · 上市科技企业</div>
+            <span class="testi-brand">VI全案客户</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card rv d2">
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">我们换了两家设计公司没做出来的Logo，希影力一稿基本定了。更重要的是，他们给的不只是一个图形，而是一整套"为什么这样设计"的策略逻辑，让我们对自己的品牌理解更深了。</p>
+        <div class="testi-author">
+          <div class="testi-avatar">李</div>
+          <div>
+            <div class="testi-name">李总</div>
+            <div class="testi-role">创始人 · 快消品牌</div>
+            <span class="testi-brand">LOGO + VI客户</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card rv d3">
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">规范手册交付之后，我们的市场团队和供应商都说"终于有标准了"。以前每次外包设计都返工，现在有了VI手册，第三方合作商直接按规范出品，效率提升非常明显。</p>
+        <div class="testi-author">
+          <div class="testi-avatar">张</div>
+          <div>
+            <div class="testi-name">张经理</div>
+            <div class="testi-role">市场运营总监 · 文旅集团</div>
+            <span class="testi-brand">品牌识别塑造客户</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card rv d4">
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">作为上市公司，对品牌形象有很高的要求。希影力能把国有企业的严谨气质和现代商业的活力平衡得很好，最终呈现的效果让董事会非常满意，整个过程沟通也非常高效。</p>
+        <div class="testi-author">
+          <div class="testi-avatar">陈</div>
+          <div>
+            <div class="testi-name">陈副总裁</div>
+            <div class="testi-role">战略发展部 · A股上市企业</div>
+            <span class="testi-brand">文旅集团 · VI项目</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card rv d5">
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">宣传册交付后直接用在了国际展会上，外国客户的反馈非常好。他们说这是他们见过的中国医疗设备企业里视觉最专业的。品牌升级的投入，从第一次展会就回来了。</p>
+        <div class="testi-author">
+          <div class="testi-avatar">吴</div>
+          <div>
+            <div class="testi-name">吴总</div>
+            <div class="testi-role">国际市场总监 · 医疗器械上市企业</div>
+            <span class="testi-brand">医疗行业 · 品牌物料</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card rv d6">
+        <div class="testi-quote-mark">"</div>
+        <p class="testi-text">我们年度产业峰会的主视觉，连续三年都交给希影力做。每年都能在保持品牌调性一致的前提下，给出新鲜感十足的创意，这种持续产出高质量的能力，是我们最看重的。</p>
+        <div class="testi-author">
+          <div class="testi-avatar">刘</div>
+          <div>
+            <div class="testi-name">刘主任</div>
+            <div class="testi-role">品牌传播部 · 产业园区运营方</div>
+            <span class="testi-brand">工业园区 · 年度服务</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section id="faq" class="sec">
+  <div class="sw" style="padding:100px 44px;">
+    <div class="faq-grid">
+      <div class="rv">
+        <span class="sl">FAQ · 常见问题</span>
+        <h2 class="sh2">你可能<br>想问的</h2>
+        <p class="sh2c">在预约之前，先看看这些</p>
+        <br><br>
+        <p style="font-size:14px;font-weight:300;line-height:1.85;color:var(--muted);">
+          还有其他疑问？直接与我们预约一次免费诊断，30分钟内给出清晰答复。
+        </p>
+        <a href="#contact" class="mod-cta" style="margin-top:24px;display:inline-flex;">预约免费诊断 <svg width="13" height="13" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6"/><polyline points="7,3 10,6 7,9"/></svg></a>
+      </div>
+      <div class="faq-list rv d2">
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>品牌VI项目通常需要多长时间完成？</span>
+            <button>+</button>
+          </div>
+          <div class="faq-a">根据项目范围不同，通常：Module A（策略）约2天–1周；Module B（识别塑造）约1–2周；完整三模块约4–8周。我们有明确的阶段节点，每个环节交付后均需确认再推进。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>可以只做LOGO，不做完整VI系统吗？</span>
+            <button>+</button>
+          </div>
+          <div class="faq-a">可以。我们提供灵活的模块组合服务。但我们会在正式报价前，评估您的实际需求 —— 对很多企业来说，单独做LOGO而不配套使用规范，往往会导致后续执行混乱，反而增加总成本。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>设计不满意怎么办？有几次修改机会？</span>
+            <button>+</button>
+          </div>
+          <div class="faq-a">每个提案阶段均包含标准轮次的修改。更重要的是：我们在策略阶段就与您充分对齐方向，所以进入设计阶段后大幅度方向性返工的情况极少发生。同时，所有交付物须通过我司评审委员会评审后再提交。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>项目结束后，源文件和版权归谁？</span>
+            <button>+</button>
+          </div>
+          <div class="faq-a">项目完成并结清尾款后，所有设计源文件（AI/PSD/PDF格式等）及商业使用权全部归属您方，希影力仅保留展示权利。我们会提供完整的文件打包与交接说明。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>你们服务哪些行业和规模的企业？</span>
+            <button>+</button>
+          </div>
+          <div class="faq-a">我们已服务消费品、文旅、科技、医疗、工业、金融等多个行业，客户涵盖A股上市企业、行业头部品牌、央国企，以及正处于快速成长期的中型企业。无论您处于哪个阶段，只要有品牌建设的诉求，都欢迎来聊。</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            <span>报价大概是什么范围？</span>
+            <button>+</button>
+          </div>
+          <div class="faq-a">因项目范围、企业规模和行业特性差异较大，我们不提供固定价目表。建议先预约一次免费的品牌诊断（30分钟），我们在了解您的具体需求后，给出透明的报价方案——不含任何隐性费用。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section id="cta" class="sec">
+  <div class="cta-glow"></div>
+  <div class="sw" style="padding:120px 44px;">
+    <div class="cta-inner rv">
+      <div class="cta-label">Ready to Start · 准备好了吗</div>
+      <h2 class="cta-h2">让品牌<br><em>被记住</em></h2>
+      <p class="cta-p">
+        免费品牌诊断，30分钟，告诉你品牌视觉系统的真实短板在哪里。<br>
+        不推销，只诊断 —— 先看清问题，再谈如何解决。
+      </p>
+      <div class="cta-btns">
+        <a href="#contact" class="bf">预约免费品牌诊断 <svg width="14" height="14" viewBox="0 0 14 14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></a>
+        <a href="#vi-cases" class="bo">查看更多案例</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact" class="sec">
+  <div class="sw" style="padding:120px 44px;">
+    <div class="contact-grid">
+      <div class="contact-info rv">
+        <span class="sl">Contact · 联系我们</span>
+        <h2 class="sh2">预约<br>免费诊断</h2>
+        <p class="sh2c">30分钟，明确你的品牌下一步</p>
+        <p class="contact-intro" style="margin-top:20px;">
+          告诉我们您的品牌现状和诉求，我们的品牌顾问会在48小时内与您确认诊断时间。
+          初次沟通完全免费，没有任何推销压力。
+        </p>
+        <div class="c-info-row">
+
+          <div class="c-info-item">
+            <span class="c-info-label">邮件</span>
+            <span class="c-info-val"><a href="mailto:support@xiyinglitech.com">support@xiyinglitech.com</a></span>
+          </div>
+          <div class="c-info-item">
+            <span class="c-info-label">服务区域</span>
+            <span class="c-info-val">广州· 佛山· 成都 · 全国远程服务</span>
+          </div>
+          <div class="c-info-item">
+            <span class="c-info-label">响应时间</span>
+            <span class="c-info-val">工作日24小时内回复</span>
+          </div>
+        </div>
+        <div style="padding:20px 24px;background:var(--o-dim);border-left:3px solid var(--o);margin-top:8px;">
+          <p style="font-family:var(--CN);font-size:13px;font-weight:300;line-height:1.8;color:var(--mid);">
+            <strong style="color:var(--dark);font-weight:600;">品牌共建者理念：</strong>
+            我们结合多年与企业深度合作的实践与洞察，为品牌梦想者打造适合市场趋势的领先品牌识别策略，助力品牌实现优势成长，收获品牌优越价值。
+          </p>
+        </div>
+      </div>
+      <div class="rv d2">
+        <form class="cform" id="cForm" onsubmit="doSubmit(event)">
+          <div class="cf-row">
+            <div>
+              <label class="cf-label">姓名 *</label>
+              <input class="cf-input" type="text" placeholder="您的姓名" required>
+            </div>
+            <div>
+              <label class="cf-label">公司</label>
+              <input class="cf-input" type="text" placeholder="公司名称（选填）">
+            </div>
+          </div>
+          <div>
+            <label class="cf-label">联系方式 *</label>
+            <input class="cf-input" type="text" placeholder="手机号 / 微信 / 邮箱" required>
+          </div>
+          <div>
+            <label class="cf-label">需要的服务</label>
+            <select class="cf-input cf-select">
+              <option value="">请选择（可跳过）</option>
+              <option>Module A · 品牌识别策略</option>
+              <option>Module B · 品牌识别塑造（含LOGO）</option>
+              <option>Module C · 品牌营销识别</option>
+              <option>A+B+C · 完整VI项目</option>
+              <option>还不确定，需要先诊断</option>
+            </select>
+          </div>
+          <div>
+            <label class="cf-label">简单描述您的需求</label>
+            <textarea class="cf-input cf-textarea" placeholder="比如：我们是一家科技公司，品牌成立3年，现在LOGO比较老旧，想做整体升级..."></textarea>
+          </div>
+          <div class="cf-check">
+            <input type="checkbox" id="agree" required>
+            <label for="agree" style="font-family:var(--CN);">我同意希影力的隐私政策，并授权团队与我联系。</label>
+          </div>
+          <button type="submit" class="cf-submit">
+            提交预约申请
+            <svg width="14" height="14" viewBox="0 0 14 14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg>
+          </button>
+          <div id="formSuccess" style="display:none;padding:20px;background:rgba(0,128,0,.06);border:1px solid rgba(0,128,0,.15);text-align:center;font-family:var(--CN);font-size:14px;color:#006600;margin-top:8px;border-radius:2px;">
+            ✓ 收到您的申请！我们将在24小时内联系您确认诊断时间。
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand-cn">希影力</div>
+        <div class="foot-brand-en">BRAND VISUAL IDENTITY SYSTEM</div>
+        <p class="foot-tagline">品牌共建者 —— 从战略洞察到视觉落地，为品牌梦想者打造适合市场趋势的领先品牌识别策略。</p>
+      </div>
+      <div>
+        <div class="foot-col-title">服务模块</div>
+        <ul class="foot-links">
+          <li><a href="#modules">Module A · 品牌识别策略</a></li>
+          <li><a href="#modules">Module B · 品牌识别塑造</a></li>
+          <li><a href="#modules">Module C · 品牌营销识别</a></li>
+          <li><a href="#deliverables">完整交付清单</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-col-title">快速导航</div>
+        <ul class="foot-links">
+          <li><a href="#pain">品牌困境诊断</a></li>
+          <li><a href="#process">合作流程</a></li>
+          <li><a href="#vi-cases">案例展示</a></li>
+          <li><a href="#testimonials">客户心声</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="foot-col-title">联系方式</div>
+        <ul class="foot-links">
+          <li><a href="mailto:support@xiyinglitech.com">support@xiyinglitech.com</a></li>
+          <li><a href="index.html">← 返回希影力主站</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span class="foot-copy">© 2025 XIYINGLI · All Rights Reserved</span>
+      <div class="foot-sub">
+        <a href="#">隐私政策</a>
+        <a href="#">服务条款</a>
+        <a href="index.html">主站</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cur = document.getElementById('cur');
+const curR = document.getElementById('cur-r');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+  curR.style.left = e.clientX + 'px';
+  curR.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a,button').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hov'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hov'));
+});
+document.addEventListener('mousedown', () => document.body.classList.add('click'));
+document.addEventListener('mouseup', () => document.body.classList.remove('click'));
+
+// Progress bar
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('prog-bar').style.transform = `scaleX(${scrolled / total})`;
+});
+
+// Nav scroll behavior
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('lt', window.scrollY > 60);
+});
+
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+// Mobile menu
+document.getElementById('hbtn').addEventListener('click', () => {
+  document.getElementById('mmenu').classList.add('open');
+});
+document.getElementById('xbtn').addEventListener('click', () => {
+  document.getElementById('mmenu').classList.remove('open');
+});
+document.querySelectorAll('.mm a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('mmenu').classList.remove('open'));
+});
+
+// Module tabs
+document.querySelectorAll('.mod-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.mod-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.mod-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+  });
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nl a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 120;
+    if (window.scrollY >= top) current = sec.getAttribute('id');
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+
+// Form submit
+function doSubmit(e) {
+  e.preventDefault();
+  document.getElementById('formSuccess').style.display = 'block';
+  e.target.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
+}
+</script>
+</body>
+</html>
